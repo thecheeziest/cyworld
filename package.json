@@ -24,7 +24,7 @@
     "redux-devtools": "^3.7.0",
     "sass": "^1.63.6",
     "styled-components": "^6.0.3",
-    "sweetalert2": "^11.7.19",
+    "sweetalert2": "^11.7.20",
     "swiper": "^10.0.4"
   },
   "devDependencies": {
