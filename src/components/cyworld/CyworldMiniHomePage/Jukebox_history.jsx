@@ -2,19 +2,12 @@ import React from 'react';
 import { CyworldJukeboxPg } from '../../styled/cyworldStyle';
 import { Link } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-import { addSkin } from '../../../store/modules/userSlice';
 
 const Jukebox_history = () => {
-    const dispatch = useDispatch();
-
     return (
         <CyworldJukeboxPg>
         <div className="history">
             <p className="none">설정된 배경 음악이 없습니다.</p>
-            <button onClick={() => dispatch(addSkin(2))}>2번 스킨</button>
-            <button onClick={() => dispatch(addSkin(3))}>3번 스킨</button>
-            <button onClick={() => dispatch(addSkin(4))}>4번 스킨</button>
-            <button onClick={() => dispatch(addSkin(5))}>5번 스킨</button>
             {/* <p className='on'>
                 <b>2023.07.13</b>
                 <strong>기다리다</strong>

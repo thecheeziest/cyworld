@@ -1,4 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
+import sAlert from '../../assets/sweetalert/sweetalert';
 
 const initialState = {
     userData: JSON.parse(localStorage.getItem('userData')) || null,
@@ -19,7 +20,7 @@ export const userSlice = createSlice({
         login(state, action) {
             const {id, pw} = action.payload;
             const userChk = JSON.parse(localStorage.getItem('userData')).find(item => item.email === id && item.pw === pw);
-            state.user = userChk ? userChk : alert('아이디와 비밀번호를 확인해 주세요.');
+            state.user = userChk ? userChk : sAlert('error', '아이디와 비밀번호를 확인해 주세요.');
             state.logUser = {id: '', pw: ''}
         },
         logout(state, action) {
@@ -31,7 +32,7 @@ export const userSlice = createSlice({
             const idChk = state.user.userSkin.find(item => item.id === action.payload);
             // 스킨 id가 서로 같은지 체크
             if (!idChk) { // 스킨 id 중복 아닐 때 추가
-                state.user.userSkin.push( { id: action.payload, skinImg: `url(../images/skin${action.payload}.jpg)` } ); }
+                state.user.userSkin.push( { id: action.payload, skinImg: `url(../images/skin/skin${action.payload}.jpg)` } ); }
                 // userSkin 안에 객체 타입으로 생성
             
             state.userData = state.userData.map(item => item.emailID === state.user.emailID ? state.user : item); // userData도 같이 업데이트
@@ -40,7 +41,7 @@ export const userSlice = createSlice({
         },
         onSkin(state, action) {
             state.user.nowSkin = state.user.nowSkin || '';
-            state.user.nowSkin = `url(../images/skin${action.payload}.jpg)`
+            state.user.nowSkin = `url(../images/skin/skin${action.payload}.jpg)`
 
             state.userData = state.userData.map(item => item.emailID === state.user.emailID ? state.user : item); // userData도 같이 업데이트
             localStorage.setItem('user', JSON.stringify(state.user)); // user 로컬스토리지에 저장
@@ -48,7 +49,15 @@ export const userSlice = createSlice({
         },
         onMiniroom(state, action) {
             state.user.nowMiniroom = state.user.nowMiniroom || '';
-            state.user.nowMiniroom = `url(../images/miniroom${action.payload}.jpg)`
+            state.user.nowMiniroom = `url(../images/miniroom/miniroom${action.payload}.jpg)`
+
+            state.userData = state.userData.map(item => item.emailID === state.user.emailID ? state.user : item); // userData도 같이 업데이트
+            localStorage.setItem('user', JSON.stringify(state.user)); // user 로컬스토리지에 저장
+            localStorage.setItem('userData', JSON.stringify(state.userData)); // userData 로컬스토리지에 저장
+        },
+        onMinimi(state, action) {
+            state.user.nowMinimi = state.user.nowMinimi || '';
+            state.user.nowMinimi = `url(../images/minimi/minimi${action.payload}.jpg)`
 
             state.userData = state.userData.map(item => item.emailID === state.user.emailID ? state.user : item); // userData도 같이 업데이트
             localStorage.setItem('user', JSON.stringify(state.user)); // user 로컬스토리지에 저장
@@ -100,5 +109,5 @@ export const userSlice = createSlice({
     }
 })
 
-export const { changeInput, login, logout, addSkin, onSkin, onMiniroom, setTitle, setInfo, addFriendsSay, addRelationShip } = userSlice.actions
+export const { changeInput, login, logout, addSkin, onSkin, onMiniroom, onMinimi, setTitle, setInfo, addFriendsSay, addRelationShip } = userSlice.actions
 export default userSlice.reducer

@@ -2,6 +2,8 @@ import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { addUser, changeInput, emailMsg } from '../../../store/modules/joinSlice';
+import sAlert from '../../../assets/sweetalert/sweetalert';
+
 
 const CyworldJoin = () => {
     const dispatch = useDispatch();
@@ -12,7 +14,7 @@ const CyworldJoin = () => {
         e.preventDefault();
 
         if (!emailChk.trim()) { // 이메일 중복 체크 안 했을 때
-            alert('이메일 중복 체크를 해 주세요.')
+            sAlert('error', '이메일 중복 체크를 해 주세요.');
         }
 
         if ( (!data.emailDomain.includes('.com') && !data.emailDomain.includes('.kr')) // 이메일 .com .kr 아닐 때
@@ -21,9 +23,9 @@ const CyworldJoin = () => {
         || (!data.name.trim()) // 이름 공백일 때
         || (!data.pw.trim()) // 비번 공백일 때
         || (data.pw !== data.pwChk) // 비번 일치하지 않을 때
-        ) return alert('회원 정보를 제대로 입력해 주세요.') // 가입 못 함
+        ) return sAlert('error', '회원 정보를 제대로 입력해 주세요.'); // 가입 못 함
 
-        alert('싸이월드의 가족이 되신 걸 환영합니다!');
+        sAlert('success', '싸이월드의 가족이 되신 걸 환영합니다!');
         navigate('/'); // 가입 완료 시 로그인 창으로 (홈)
         dispatch(addUser(data)); // userData에 추가
     }

@@ -11,7 +11,8 @@ const menuData = [
 const setData = [
     {id: 1, menu: '미니룸 설정', on: true},
     {id: 2, menu: '스킨 설정', on: false},
-    {id: 3, menu: '배경음악 설정', on: false}
+    {id: 3, menu: '미니미 설정', on: false},
+    {id: 4, menu: '배경음악 설정', on: false}
 ];
 
 const userList = [

@@ -3,7 +3,7 @@ import cyworld from "./modules/cyworldSlice";
 import join from "./modules/joinSlice";
 import user from "./modules/userSlice";
 import music from "./modules/musicBoxSlice";
-import musicItem , { setData } from "./modules/musicItemSlice";
+import musicItem from "./modules/musicItemSlice";
 import diary from "./modules/diarySlice";
 import cart from "./modules/musicCartSlice";
 
