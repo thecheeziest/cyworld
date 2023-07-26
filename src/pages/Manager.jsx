@@ -8,6 +8,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { onSetMenu } from '../store/modules/cyworldSlice';
 import Manager_skin from '../components/cyworld/CyworldMiniHomePage/Manager_skin';
 import Manager_bgm from '../components/cyworld/CyworldMiniHomePage/Manager_bgm';
+import Manager_minimi from '../components/cyworld/CyworldMiniHomePage/Manager_minimi';
 
 const Manager = () => {
     const { setData, setView } = useSelector(state => state.cyworld);
@@ -47,6 +48,12 @@ const Manager = () => {
                         {
                             
                             setView === 3 && <>
+                            <div className="title"> <h3>미니미 설정</h3> </div>
+                            <Manager_minimi /> </>
+                        }
+                        {
+                            
+                            setView === 4 && <>
                             <div className="title"> <h3>배경음악 설정</h3> </div>
                             <Manager_bgm /> </>
                         }

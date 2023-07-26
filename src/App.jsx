@@ -18,6 +18,7 @@ import Gallery from './pages/Gallery';
 import GuestBook from './pages/GuestBook';
 import Jukebox from './pages/Jukebox';
 import Manager from './pages/Manager';
+import Minimi from './pages/Minimi';
 
 const App = () => {
   return (
@@ -33,6 +34,7 @@ const App = () => {
               <Route index element={<DotoriStore />}/>
               <Route path="bgm" element={<BgmStore />}/>
               <Route path="theme" element={<Theme />}/>
+              <Route path="minimi" element={<Minimi />}/>
             </Route>
           </Route>
               

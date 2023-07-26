@@ -379,6 +379,16 @@ div {
         }
     }
 }
+.go-minimi {
+    h3 { color: #ed7793; }
+    button {
+        background-image: url(../images/go_minimi.jpg);
+        &:hover {
+            background-image: url(../images/go_minimi_hover.jpg);
+            color: #ed7793;
+        }
+    }
+}
 `
 
 // CyworldMiniHP
