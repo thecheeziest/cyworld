@@ -1624,6 +1624,21 @@ export const MusicBoxContainer= styled.div `
     h4 {  padding-left:70px; font-size: 20px;
         font-weight: 600;
         display: inline-block;}
+    .BasketMessage {
+      h2{
+        padding: 10px 0;
+        font-size: 20px;
+        /* color:#fff; */
+    }
+    }    
+    .BasketEmpty {
+      h2{
+        padding: 70px 0;
+        font-size: 20px;
+        /* color:#fff; */
+    }
+    }    
+
     .searchText {
         input{
             width:442px; height:45px; border-radius:15px;
