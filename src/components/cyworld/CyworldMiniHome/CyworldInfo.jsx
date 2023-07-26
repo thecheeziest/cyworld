@@ -3,14 +3,14 @@ import { Icon } from '@iconify/react';
 import { CyworldInfoContainer } from '../../styled/cyworldStyle';
 import { useDispatch, useSelector } from 'react-redux';
 import { changeInput, onInfo } from '../../../store/modules/cyworldSlice';
-import { setInfo } from '../../../store/modules/userSlice';
+import { addRelationShip, setInfo } from '../../../store/modules/userSlice';
 import { useNavigate, useParams } from 'react-router-dom';
 
 const CyworldInfo = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const { text, isInfo } = useSelector(state => state.cyworld);
-    const { user, userData } = useSelector(state => state.user);
+    const { user, userData, relation, relationData } = useSelector(state => state.user);
 
     const { userID } = useParams();
     const nowUser = userData.find(item => item.emailID === userID);
@@ -24,6 +24,13 @@ const CyworldInfo = () => {
 
     const goHP = e => {
         navigate(`/${e.target.value}`);
+    }
+    const relationship = () => { // 일촌 배열에 송신자 수신자 상태 정보입력 (오류남)
+        relation.send = user.name
+        relation.arrive = nowUser.name
+        relation.status = '대기'
+        dispatch(addRelationShip(relation))
+        console.log(relationData)
     }
 
     return (
@@ -70,6 +77,7 @@ const CyworldInfo = () => {
             <div className="name">
                 <p>{name}</p>
                 <Icon icon="ant-design:woman-outlined" />
+                {user.emailID !== userID && <button onClick={() => relationship()}>일촌신청</button>}
             </div>
             <em className='mail'>{email}</em>
             <div className="surfing">
