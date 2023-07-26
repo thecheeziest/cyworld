@@ -1,10 +1,8 @@
 import { Icon } from '@iconify/react';
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
 import { updateData } from '../../../store/modules/diarySlice';
-import moment from 'moment';
-
 
 const Diary_dailyEdit = () => {
     const dispatch = useDispatch()   
@@ -12,31 +10,30 @@ const Diary_dailyEdit = () => {
 
     const {editData} = useSelector(state => state.diary)
     const [editText, setEditText] = useState(editData)
-    const {id, date, substance} = editText
+    const {id, date, substance, updTime } = editText
 
-    
-    
-    
-    
-
-
+    const cur = new Date() 
+    const week = ['일','월','화','수','목','금','토']
+    const curYear = cur.getFullYear()
+    const curMonth = String(cur.getMonth()+1).padStart(2,'0')
+    const curDate = String(cur.getDate()).padStart(2,'0')
+    const curDay = week[cur.getDay()]
+    const curHour = String(cur.getHours()).padStart(2,'0')    
+    const curMinute = String(cur.getMinutes()).padStart(2,'0')   
 
     const changInput = (e) => {
         const {value} = e.target
-        // substance 값을 변경해야함
         setEditText({...editText, substance:value})
-
     }
 
     const onSubmit = (e) => {
         e.preventDefault()
+        editText.updTime = `${curYear}.${curMonth}.${curDate} ${curDay} ${curHour}:${curMinute}` //2023.07.20 목 12:23
+        if(!substance) {return alert('입력된 내용이 없습니다! 확인해주세요.')}
         dispatch(updateData(editText))
+        setEditText({substance:'', updTime:''})
         navigate('/zoa/diary')
-        
-
     }
-
-
 
     return (
         <div className='daily-add'>

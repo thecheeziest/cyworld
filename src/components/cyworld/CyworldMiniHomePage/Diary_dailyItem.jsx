@@ -1,24 +1,25 @@
-import { delData, setEditData } from '../../../store/modules/diarySlice';
 import Diary_comment from './Diary_comment';
 import { useDispatch } from 'react-redux';
-import { Link, useNavigate } from 'react-router-dom';
-
+import { useNavigate } from 'react-router-dom';
+import { delData, setEditData } from '../../../store/modules/diarySlice';
 
 const Diary_dailyItem = ({item}) => {
-    const {id, date, substance, isPublic, comment} = item
     const dispatch = useDispatch()
     const navigate = useNavigate()
+
+    const {id, date, substance, isPublic, comment, updTime} = item
     const onGo = () => {
         navigate('/zoa/diary/edit')
         dispatch(setEditData(item))
     }
-
-    
     
     return (
         <>
             <div className="daily-item">
                 <p className="date">{date}</p>
+                {
+                    updTime !== null ? <p className="updTime">마지막 수정 시간 {updTime}</p> : null
+                }
                 <p className="substance">{substance}</p>
                 <p className='isPublic'>공개설정 : {isPublic ? "전체공개" : "일촌공개"}</p>
                 <div className="btn-line"> 
@@ -27,8 +28,8 @@ const Diary_dailyItem = ({item}) => {
                         <button onClick={()=>dispatch(delData(id))}>삭제</button>
                     </p>
                 </div>
-                <Diary_comment comment={comment}/>
-                
+                {/* //////// 댓글창 //////// */}
+                <Diary_comment id={id} comment={comment}/>
             </div>    
         </>
     );

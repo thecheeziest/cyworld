@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from 'react';
+import 'react-calendar/dist/Calendar.css';
 import Calendar from 'react-calendar';
 import moment from 'moment';
-import 'react-calendar/dist/Calendar.css';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { showDailyData, sortData } from '../../../store/modules/diarySlice';
 
@@ -9,8 +9,8 @@ const Diary_calendar = () => {
     const dispatch = useDispatch()
     const {data} = useSelector(state => state.diary)    
     const [value, onChange] = useState(new Date()) //클릭한 날짜
-    const activeDate = moment(value).format('YYYY.MM.DD'); // 클릭한 날짜 //2023.07.19 , string
-
+    const activeDate = moment(value).format('YYYY.MM.DD'); // 클릭한 날짜 //2023.07.19, string
+    
     useEffect(()=>{
         const filteredData = data.filter(item => item.date.slice(0,10) === activeDate)
         dispatch(showDailyData(filteredData))
