@@ -1,6 +1,6 @@
-import { Icon } from '@iconify/react';
 import moment from 'moment';
 import 'moment/locale/ko';
+import { Icon } from '@iconify/react';
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
@@ -10,8 +10,8 @@ const Diary_dailyAdd = () => {
     const dispatch = useDispatch()   
     const navigate = useNavigate()
 
-    const [addText, setAddText] = useState({date:'', substance:'', isPublic: true}) //입력초기값
-    const {date, substance} = addText
+    const [addText, setAddText] = useState({date:'', substance:'', isPublic: true}) 
+    const {substance} = addText
 
     // 날짜 및 시간
     const cur = new Date() 
@@ -20,14 +20,13 @@ const Diary_dailyAdd = () => {
     const curMonth = String(cur.getMonth()+1).padStart(2,'0')
     const curDate = String(cur.getDate()).padStart(2,'0')
     const curDay = week[cur.getDay()]
-    const curHour = cur.getHours()
+    const curHour = String(cur.getHours()).padStart(2,'0')    
     const curMinute = String(cur.getMinutes()).padStart(2,'0')    
 
     const changeInput = e => {
         const {value} = e.target
         setAddText({...addText, substance: value}) //왜 이런 형태인지 아직 잘 모르겠다
     }
-    
     const onSubmit = e => {
         e.preventDefault()
         addText.date = `${curYear}.${curMonth}.${curDate} ${curDay} ${curHour}:${curMinute}` //2023.07.20 목 12:23
@@ -36,7 +35,6 @@ const Diary_dailyAdd = () => {
         setAddText({substance:''})
         navigate('/zoa/diary')
     }
-    
 
     return (
         <div className='daily-add'>
