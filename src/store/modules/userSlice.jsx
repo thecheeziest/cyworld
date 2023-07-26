@@ -4,7 +4,9 @@ import sAlert from '../../assets/sweetalert/sweetalert';
 const initialState = {
     userData: JSON.parse(localStorage.getItem('userData')) || null,
     logUser: {id: '', pw: ''},
-    user: localStorage.getItem('user') ? JSON.parse(localStorage.getItem('user')) : null
+    user: localStorage.getItem('user') ? JSON.parse(localStorage.getItem('user')) : null,
+    relation : { send : '', arrive : '', status : ''}, // 일촌 객체
+    relationData : [] // 일촌 배열
 }
 
 export const userSlice = createSlice({
@@ -92,9 +94,20 @@ export const userSlice = createSlice({
         },
         addFriendsSay(state, action) {
             // state.user.friends.push({ comment: action.payload });
+        },
+        addRelationShip(state, action) { // 일촌객체를 일촌배열에 추가
+            const {send, arrive, status} = action.payload
+            state.relationData = [
+                ...state.relationData,
+                {
+                    send : send,
+                    arrive : arrive,
+                    status : status
+                }
+            ]
         }
     }
 })
 
-export const { changeInput, login, logout, addSkin, onSkin, onMiniroom, onMinimi, setTitle, setInfo, addFriendsSay } = userSlice.actions
+export const { changeInput, login, logout, addSkin, onSkin, onMiniroom, onMinimi, setTitle, setInfo, addFriendsSay, addRelationShip } = userSlice.actions
 export default userSlice.reducer

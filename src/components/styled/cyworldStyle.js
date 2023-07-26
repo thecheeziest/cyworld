@@ -1080,10 +1080,25 @@ position: relative;
     width: 100%;
     font-size: 18px;
     position: relative;
-    .daily-length { 
-        margin: 10px 0;
-        span {color: #FF6600; margin-right:2px}
-        &.no {
+    .sub-title {
+        display: flex; justify-content: space-between; align-items: center;
+        width: 100%; height: 60px;
+        button {
+            height: 30px;
+            padding: 0 8px;
+            background: #fff;
+            border: 1px solid #999; border-radius: 3px;
+            margin-right: 2px;
+            vertical-align: top;
+            text-align: center;
+            font-weight: 100;
+        }
+        .daily-length { 
+            margin-left: 8px;
+            color: #424242;
+            span {color: #FF6600; margin-right:3px}
+        }
+/*         &.no {
             text-align: center;
             p {
                 margin: 80px 0 20px;
@@ -1092,6 +1107,7 @@ position: relative;
             }
             a {}
         }
+ */    
     }
     .daily-item {
         width: 100%;
@@ -1107,15 +1123,21 @@ position: relative;
             color: #2397C0; 
             letter-spacing:0.1px
         }
+        .updTime { 
+            font-size:16px; color: #757575;
+            span {
+                font-size:16px; color: #757575;
+            }
+        }
         .substance { margin: 25px 0; }
         .isPublic {
-            padding: 7px 0;
+            padding: 9px 0;
             border-top: 2px dotted #BABABA;
             border-bottom: 1px dotted #BABABA;
         }
         .btn-line {
             position: relative;
-            height: 50px;
+            height: 45px;
             p {
                 position: absolute; top: 50%; transform: translateY(-50%);
 
@@ -1150,7 +1172,7 @@ position: relative;
                     p {
                         display: inline;
                         &.com-user { color: #113377} 
-                        &.com-date { font-size:14px; color: #999; margin: 0 6px 0 3px;} 
+                        &.com-date { font-size:14px; color: #999; margin: 0 6px 0 7px;} 
                     }
                     span {
                         button { 
@@ -1165,7 +1187,7 @@ position: relative;
                 display: flex; justify-content: space-between; align-items: center; width: 100%;
                 p {}
                 input {
-                    width: 570px; height: 32px;
+                    width: 580px; height: 32px;
                     border: 1px solid #999; border-radius: 3px;
                     text-indent: 10px;
                     box-sizing: border-box;
@@ -1612,6 +1634,21 @@ export const MusicBoxContainer= styled.div `
     h4 {  padding-left:70px; font-size: 20px;
         font-weight: 600;
         display: inline-block;}
+    .BasketMessage {
+      h2{
+        padding: 10px 0;
+        font-size: 20px;
+        /* color:#fff; */
+    }
+    }    
+    .BasketEmpty {
+      h2{
+        padding: 70px 0;
+        font-size: 20px;
+        /* color:#fff; */
+    }
+    }    
+
     .searchText {
         input{
             width:442px; height:45px; border-radius:15px;
