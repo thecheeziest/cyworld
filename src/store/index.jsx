@@ -5,6 +5,7 @@ import user from "./modules/userSlice";
 import music from "./modules/musicBoxSlice";
 import musicItem , { setData } from "./modules/musicItemSlice";
 import diary from "./modules/diarySlice";
+import cart from "./modules/musicCartSlice";
 
 export const store = configureStore({
     reducer: {
@@ -13,6 +14,7 @@ export const store = configureStore({
       user,
       music,
       musicItem,
-      diary
+      diary,
+      cart
     }
 });
