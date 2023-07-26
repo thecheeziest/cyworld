@@ -15,7 +15,6 @@ const CyworldJoin = () => {
 
         if (!emailChk.trim()) { // 이메일 중복 체크 안 했을 때
             sAlert('error', '이메일 중복 체크를 해 주세요.');
-            sAlert('error', '이메일 중복 체크를 해 주세요.');
         }
 
         if ( (!data.emailDomain.includes('.com') && !data.emailDomain.includes('.kr')) // 이메일 .com .kr 아닐 때
