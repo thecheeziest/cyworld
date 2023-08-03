@@ -5,7 +5,6 @@ const initialState = {
     userData: JSON.parse(localStorage.getItem('userData')) || null,
     logUser: {id: '', pw: ''},
     user: localStorage.getItem('user') ? JSON.parse(localStorage.getItem('user')) : null,
-    relation : { send : '', arrive : '', status : ''}, // 일촌 객체
     relationData : [] // 일촌 배열
 }
 
@@ -96,13 +95,13 @@ export const userSlice = createSlice({
             // state.user.friends.push({ comment: action.payload });
         },
         addRelationShip(state, action) { // 일촌객체를 일촌배열에 추가
-            const {send, arrive, status} = action.payload
+            const {send, arrive} = action.payload
             state.relationData = [
                 ...state.relationData,
                 {
                     send : send,
                     arrive : arrive,
-                    status : status
+                    status : '대기중'
                 }
             ]
         }
