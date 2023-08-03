@@ -2,16 +2,13 @@ import moment from 'moment';
 import 'moment/locale/ko';
 import { Icon } from '@iconify/react';
 import { useState } from 'react';
-import { useDispatch } from 'react-redux';
-import { Link, useNavigate } from 'react-router-dom';
-import { addData } from '../../../store/modules/diarySlice';
+import { useDispatch, useSelector } from 'react-redux';
+import { Link, useNavigate, useParams } from 'react-router-dom';
+import { addDiary } from '../../../store/modules/userSlice';
 
 const Diary_dailyAdd = () => {
     const dispatch = useDispatch()   
     const navigate = useNavigate()
-
-    const [addText, setAddText] = useState({date:'', substance:'', isPublic: true}) 
-    const {substance} = addText
 
     // 날짜 및 시간
     const cur = new Date() 
@@ -21,19 +18,31 @@ const Diary_dailyAdd = () => {
     const curDate = String(cur.getDate()).padStart(2,'0')
     const curDay = week[cur.getDay()]
     const curHour = String(cur.getHours()).padStart(2,'0')    
-    const curMinute = String(cur.getMinutes()).padStart(2,'0')    
-
+    const curMinute = String(cur.getMinutes()).padStart(2,'0')
+    
+    //userSlice
+    const { user, userData } = useSelector(state => state.user); 
+    const { userID } = useParams(); 
+    const nowUser = userData.find(item => item.emailID === userID); 
+    // const nextId = user.userDiary ? user.userDiary[user.userDiary.length - 1]["id"] : 0; //id = 마지막게시물의 id+1
+    const nextId = user.userDiary?.[user.userDiary.length - 1]?.id ?? 0;
+    
+    // dailyAdd 시작
+    const [addText, setAddText] = useState({id: nextId+1, date:'', substance:'', isPublic:true, style:{align:'left'}}) 
+    const {substance} = addText
     const changeInput = e => {
         const {value} = e.target
-        setAddText({...addText, substance: value}) //왜 이런 형태인지 아직 잘 모르겠다
+        setAddText({...addText, substance: value}) 
     }
+
     const onSubmit = e => {
         e.preventDefault()
         addText.date = `${curYear}.${curMonth}.${curDate} ${curDay} ${curHour}:${curMinute}` //2023.07.20 목 12:23
         if(!substance) {return alert('입력된 내용이 없습니다! 확인해주세요.')}
-        dispatch(addData(addText))
+        // dispatch(addData(addText)) diarySlice
+        dispatch(addDiary(addText)) 
         setAddText({substance:''})
-        navigate('/zoa/diary')
+        navigate(`/${user.emailID}/diary`)
     }
 
     return (
@@ -74,7 +83,7 @@ const Diary_dailyAdd = () => {
                     <textarea name="" id="" cols="30" rows="10" placeholder='너만의 기록을 남겨봐 ─☆＊' value={substance} onChange={changeInput}></textarea>
                 </div>
                 <p className='btn-wrap'>
-                    <Link to="/zoa/diary"><button><Icon icon="pepicons-print:circle-filled" color="#ff9200" width="20px" />취소</button></Link>
+                    <Link to={`/${user.emailID}/diary`}><button><Icon icon="pepicons-print:circle-filled" color="#ff9200" width="20px" />취소</button></Link>
                     <button><Icon icon="pepicons-print:circle-filled" color="#ff9200" width="20px" type='submit' />확인</button>
                 </p>
             </form>
