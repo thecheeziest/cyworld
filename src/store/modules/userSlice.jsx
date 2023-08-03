@@ -2,8 +2,8 @@ import { createSlice } from '@reduxjs/toolkit';
 import sAlert from '../../assets/sweetalert/sweetalert';
 
 const initialState = {
-    userData: JSON.parse(localStorage.getItem('userData')) || null,
-    logUser: {id: '', pw: ''}, 
+    userData: JSON.parse(localStorage.getItem('userData')) || null,  //모두의 데이터
+    logUser: {id: '', pw: ''},   //로그인 한 사람의 데이터
     user: localStorage.getItem('user') ? JSON.parse(localStorage.getItem('user')) : null,
     relationData : [] // 일촌 배열
 }

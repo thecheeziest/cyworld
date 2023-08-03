@@ -3,7 +3,6 @@ import { CyworldHPContainer } from '../components/styled/cyworldStyle';
 import CyworldToday from '../components/cyworld/CyworldMiniHome/CyworldToday';
 import { Icon } from '@iconify/react';
 import CyworldTitle from '../components/cyworld/CyworldMiniHome/CyworldTitle';
-// import Profile_Info from '../components/cyworld/CyworldMiniHomePage/Profile_Info';
 import Profile_Edit from '../components/cyworld/CyworldMiniHomePage/Profile_Edit';
 
 
@@ -36,7 +35,6 @@ const Profile = () => {
                         </div>
 
                         {/* 여기부터 본문 내용 들어가면 됨 (컴포넌트 연결하거나 그냥 작성하거나) */}
-                            {/* <Profile_Info /> */}
                             <Profile_Edit />
                         
 
