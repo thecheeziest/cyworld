@@ -1,7 +1,7 @@
 import { Icon } from '@iconify/react';
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 import { updateData } from '../../../store/modules/diarySlice';
 
 const Diary_dailyEdit = () => {
@@ -32,7 +32,7 @@ const Diary_dailyEdit = () => {
         if(!substance) {return alert('입력된 내용이 없습니다! 확인해주세요.')}
         dispatch(updateData(editText))
         setEditText({substance:'', updTime:''})
-        navigate('/zoa/diary')
+        navigate(`/${user.emailID}/diary`)
     }
 
     return (

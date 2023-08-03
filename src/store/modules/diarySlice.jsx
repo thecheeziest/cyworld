@@ -18,6 +18,7 @@ export const diarySlice = createSlice({
         },
         addData(state, action){
             state.data = [...state.data, {id:state.nextId++, updTime:null, comment:[], ...action.payload}]
+            // state.addData2 = {id:state.nextId++, updTime:null, comment:[], ...action.payload}
         },
         delData(state, action){
             state.data = state.data.filter(item => item.id !== action.payload)
