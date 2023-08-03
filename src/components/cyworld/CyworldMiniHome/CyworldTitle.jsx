@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Link, useParams } from 'react-router-dom';
 import { changeInput, onTitle } from '../../../store/modules/cyworldSlice';
 import { setTitle } from '../../../store/modules/userSlice';
+import { AiOutlineMail } from 'react-icons/ai'
 
 const CyworldTitle = () => {
     const { user, userData } = useSelector(state => state.user);
@@ -16,6 +17,9 @@ const CyworldTitle = () => {
     const editTitle = () => {
         dispatch(onTitle());
         dispatch(setTitle(text));
+    }
+    const relationList = () => {
+        
     }
 
     return (
@@ -31,6 +35,7 @@ const CyworldTitle = () => {
                     }
                     </h2></Link>
             }
+            <button onClick={relationList}><AiOutlineMail /></button>
             {
                 user.emailID === userID && // 미니홈피 주인일 때만 노출
                 <button className='edit' onClick={editTitle}>{isTitle ? 'SAVE' : 'EDIT'}</button>

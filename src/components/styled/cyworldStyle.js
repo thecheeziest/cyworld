@@ -1119,7 +1119,7 @@ export const CyworldCart = styled.div`
 // 영은 시작
 // CyworldDiaryPg 
 export const CyworldDiaryPg = styled.div`
-width: 100%;
+width: 758px;
 overflow: hidden;
 position: relative;
 
@@ -1127,7 +1127,7 @@ position: relative;
     width: 100%;
     font-size: 18px;
     position: relative;
-    .sub-title {
+    .daily-length {
         display: flex; justify-content: space-between; align-items: center;
         width: 100%; height: 60px;
         button {
@@ -1140,43 +1140,87 @@ position: relative;
             text-align: center;
             font-weight: 100;
         }
-        .daily-length { 
+        p { 
             margin-left: 8px;
             color: #424242;
-            span {color: #FF6600; margin-right:3px}
+            span {color: #ff9200; margin-right:3px}
         }
-/*         &.no {
+    }
+    .daily-null {
+        .none {
+            height: 100px;
             text-align: center;
-            p {
-                margin: 80px 0 20px;
-                font-size: 20px;
-                color: #999;
-            }
-            a {}
+            line-height: 100px;
+            background: #f4f4f4;
+            border-top: 2px dotted #BABABA;
         }
- */    
+        .go-add {
+            position: relative;
+            width: 500px; height: 220px;
+            margin: 50px auto;
+            background: #fff;
+            box-shadow: 0 6px #999;
+            border: 1px solid #999;
+            border-radius: 20px;
+            background-color: #ffe06e;
+            background-image: url(../images/diary_upload.png);
+            background-repeat: no-repeat;
+            background-size: 25%;
+            background-position: 40px 15px;
+            box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(136, 136, 136, 0.8) 0px 9px 0px ;
+            cursor: pointer ;
+            &:hover {
+                box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(136, 136, 136, 0.8) 0px 2px 0px ;
+                top: 2px;  
+                .click {display: none;}
+                .go {display: block;}   
+            }
+            .click, .go {
+                position: absolute;
+                top: 100px;
+
+                font-size: 42px;
+                font-weight: 900;
+                font-style: italic;
+                letter-spacing: 3px;
+                text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;                
+                
+                color: #ff9200;   
+            }
+            .click {
+                /* display: none;   */
+                left: 200px;
+            }
+            .go {
+                display: none;  
+                left: 170px;
+                letter-spacing: 2px;
+                color :#ff6400;
+            }
+        }
     }
     .daily-item {
         width: 100%;
         margin-bottom: 50px;
         padding: 25px; 
         box-sizing: border-box;
-        border: 1px solid #E6E6E6; border-right: none;
+        border: 1px solid #E6E6E6; 
         &:last-child {margin-bottom:0}
         .date { 
             font-family: 'NeoDunggeunmoPro-Regular'; 
             font-size: 19px; 
             font-weight:900; 
             color: #2397C0; 
-            letter-spacing:0.1px
+            letter-spacing:0.1px;            
         }
         .updTime { 
             font-size:16px; color: #757575;
-            span {
-                font-size:16px; color: #757575;
-            }
+            span { font-size:16px; color: #757575; }
         }
-        .substance { margin: 25px 0; }
+        .substance { 
+            margin: 25px 0; 
+            white-space: pre-line; /* \n 적용 해결 */
+        }
         .isPublic {
             padding: 9px 0;
             border-top: 2px dotted #BABABA;
@@ -1204,7 +1248,6 @@ position: relative;
                     margin-top:3px; 
                     opacity: 1;
                 }
-                /* 아이콘2 .isLike { color: lightcoral; font-size:25px; } */
             }
         }
 
@@ -1218,7 +1261,7 @@ position: relative;
                     margin-bottom: 3px;
                     p {
                         display: inline;
-                        &.com-user { color: #113377} 
+                        &.com-user > a { color: #113377; font-size:18px;} 
                         &.com-date { font-size:14px; color: #999; margin: 0 6px 0 7px;} 
                     }
                     span {
@@ -1234,7 +1277,7 @@ position: relative;
                 display: flex; justify-content: space-between; align-items: center; width: 100%;
                 p {}
                 input {
-                    width: 580px; height: 32px;
+                    width: 565px; height: 32px;
                     border: 1px solid #999; border-radius: 3px;
                     text-indent: 10px;
                     box-sizing: border-box;
@@ -1258,6 +1301,8 @@ position: relative;
     .react-calendar { 
         width:80%;
         margin-left: 20%;
+        padding-left: 6px;
+        background-color: transparent;
         border: none;
         border-left: 1px dotted #ccc;
         .react-calendar__navigation { /* 날짜이동 영역 */
@@ -1270,6 +1315,7 @@ position: relative;
                 font-family:'NeoDunggeunmoPro-Regular';
                 font-size: 18px;
                 letter-spacing: 0.2px;
+                line-height: 1.4;
                 color: #5c5d5d;                
             }
             .react-calendar__navigation__arrow { /* 날짜이동 버튼 */
@@ -1339,9 +1385,10 @@ position: relative;
 .daily-add {
     position: relative;
     width: 100%;
-    border-top: 1px dotted #BABABA;
     margin-top: 57px;
     padding: 20px;
+    box-sizing: border-box;
+    border-top: 1px dotted #BABABA;
     /* 버튼 공통 */
     button, select {
         height: 28px;
@@ -1370,7 +1417,7 @@ position: relative;
         }
     }
     textarea {
-        width: 710px; 
+        width: 100%;
         padding: 20px;
         box-sizing: border-box;
         font-size: 18px;
@@ -1378,11 +1425,11 @@ position: relative;
         box-shadow: rgba(0, 0, 0, 0.1) 1.95px 1.95px 2.6px;
     }
     .btn-wrap { 
-        display: flex; margin-top: 10px; margin-left: 567px;
+        display: flex; justify-content: end; margin-top: 10px;
         button {
             display: flex; align-items: center; justify-content: center;
             width: 68px; height: 32px;
-            &:last-child {margin-left: 5px}
+            margin-left: 5px;
         }
     }
 }
@@ -1401,11 +1448,16 @@ background: #EDEDED;
     justify-content: space-between;
     padding-top: 20px;
     .imgBox {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
         margin-top: 10px;
-        margin-left: 10px;
+        /* margin-left: 10px; */
         img {
             width: 350px;
-            height: 400px;
+            height: 350px;
+            padding-left: 15px;
+            padding-bottom: 15px;
          }
     }
     .info-text {
@@ -1418,6 +1470,7 @@ background: #EDEDED;
             }
             input {
                 width: 250px !important;
+                /* width: 250px;  */
                 text-indent: 10px;
                 margin-right: 25px;
             }

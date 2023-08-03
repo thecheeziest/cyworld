@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Icon } from '@iconify/react';
 import { CyworldInfoContainer } from '../../styled/cyworldStyle';
 import { useDispatch, useSelector } from 'react-redux';
@@ -10,13 +10,14 @@ const CyworldInfo = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const { text, isInfo } = useSelector(state => state.cyworld);
-    const { user, userData, relation, relationData } = useSelector(state => state.user);
+    const { user, userData } = useSelector(state => state.user);
 
     const { userID } = useParams();
     const nowUser = userData.find(item => item.emailID === userID);
     // 도메인에 맞는 데이터 출력
     const { name, email } = nowUser;
-    
+    const relData = { send : '', arrive : '' }
+
     const editInfo = () => {
         dispatch(onInfo());
         dispatch(setInfo(text));
@@ -25,12 +26,10 @@ const CyworldInfo = () => {
     const goHP = e => {
         navigate(`/${e.target.value}`);
     }
-    const relationship = () => { // 일촌 배열에 송신자 수신자 상태 정보입력 (오류남)
-        relation.send = user.name
-        relation.arrive = nowUser.name
-        relation.status = '대기'
-        dispatch(addRelationShip(relation))
-        console.log(relationData)
+    const relationship = () => { // 일촌 배열에 송신자 수신자 상태 정보입력 (오류해결)
+        relData.send = user.name
+        relData.arrive = nowUser.name
+        dispatch(addRelationShip(relData))
     }
 
     return (
@@ -77,7 +76,7 @@ const CyworldInfo = () => {
             <div className="name">
                 <p>{name}</p>
                 <Icon icon="ant-design:woman-outlined" />
-                {user.emailID !== userID && <button onClick={() => relationship()}>일촌신청</button>}
+                {user.emailID !== userID && <button onClick={relationship}>일촌신청</button>}
             </div>
             <em className='mail'>{email}</em>
             <div className="surfing">

@@ -5,7 +5,7 @@ import MusicBoxItem from './MusicBoxItem';
 import { useSelector } from 'react-redux';
 
 const MusicBoxList = ({ searchKeyword }) => {
-    const like = useSelector((state) => state.musicItem.like);
+    const like = useSelector((state) => state.music.like);
     const getFilteredMusicList = () => {
       return music.filter(item =>
         item.title.toLowerCase().includes(searchKeyword.toLowerCase()) ||
@@ -30,7 +30,6 @@ const MusicBoxList = ({ searchKeyword }) => {
           </colgroup>
           <thead>
             <tr>
-              {/* <th><Icon icon="ri:checkbox-line" width="23" /></th> */}
               <th>순위</th>
               <th>곡정보</th>
               <th>앨범</th>

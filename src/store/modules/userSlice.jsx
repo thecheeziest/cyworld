@@ -2,17 +2,47 @@ import { createSlice } from '@reduxjs/toolkit';
 import sAlert from '../../assets/sweetalert/sweetalert';
 
 const initialState = {
-    userData: JSON.parse(localStorage.getItem('userData')) || null,
-    logUser: {id: '', pw: ''},
+    userData: JSON.parse(localStorage.getItem('userData')) || null,  //모두의 데이터
+    logUser: {id: '', pw: ''},   //로그인 한 사람의 데이터
     user: localStorage.getItem('user') ? JSON.parse(localStorage.getItem('user')) : null,
-    relation : { send : '', arrive : '', status : ''}, // 일촌 객체
     relationData : [] // 일촌 배열
 }
 
 export const userSlice = createSlice({
     name: 'user',
     initialState,
-    reducers: {
+    reducers: { 
+        addDiary(state, action){
+            state.user.userDiary = state.user.userDiary || []; 
+            state.user.userDiary.push({...action.payload, updTime:null, comment:[]})
+            state.userData = state.userData.map(item => item.emailID === state.user.emailID ? state.user : item) 
+            localStorage.setItem('user', JSON.stringify(state.user)) 
+            localStorage.setItem('userData', JSON.stringify(state.userData))     
+        },
+        delDiary(state, action){
+            state.user.userDiary = state.user.userDiary.filter(item => item.id !== action.payload)
+            state.userData = state.userData.map(item => item.emailID === state.user.emailID ? state.user : item)
+            localStorage.setItem('user', JSON.stringify(state.user)) 
+            localStorage.setItem('userData', JSON.stringify(state.userData)) 
+        },
+        editDiary(state, action){ // 다이어리는 이미 주인장만 작성 가능 => id가 동일한 게시물 찾기 
+           state.user.userDiary = state.user.userDiary.map(item => item.id === action.payload.id ? action.payload : item)
+           state.userData = state.userData.map(item => item.emailID === state.user.emailID ? state.user : item)
+           localStorage.setItem('user', JSON.stringify(state.user)) 
+           localStorage.setItem('userData', JSON.stringify(state.userData)) 
+        },
+        addComDiary(state, action){
+            const {userID, id, addText} = action.payload // 주인장ID, 게시물id, 댓글객체
+            const nowUser = state.userData.find(item => item.emailID === userID); //주인장의 데이터
+            const targetDiary = nowUser.userDiary.find(item => item.id === id) // 주인장의 다이어리 중 현재게시물과 id가 일치하는 데이터를 찾아 {댓글}을 추가한다
+            targetDiary.comment.push(addText)
+            /* localStorage.setItem('user.', JSON.stringify(state.user)) // user업뎃안됨 */
+            localStorage.setItem('userData', JSON.stringify(state.userData)) 
+        },
+        delComDiary(state, action){
+
+        },
+        // diary 끝
         changeInput(state, action) {
             const { name, value } = action.payload;
             state.logUser = { ...state.logUser, [name]: value };
@@ -96,18 +126,18 @@ export const userSlice = createSlice({
             // state.user.friends.push({ comment: action.payload });
         },
         addRelationShip(state, action) { // 일촌객체를 일촌배열에 추가
-            const {send, arrive, status} = action.payload
+            const {send, arrive} = action.payload
             state.relationData = [
                 ...state.relationData,
                 {
                     send : send,
                     arrive : arrive,
-                    status : status
+                    status : '대기중'
                 }
             ]
         }
     }
 })
 
-export const { changeInput, login, logout, addSkin, onSkin, onMiniroom, onMinimi, setTitle, setInfo, addFriendsSay, addRelationShip } = userSlice.actions
+export const { addDiary, delDiary, editDiary, addComDiary, delComDiary, changeInput, login, logout, addSkin, onSkin, onMiniroom, onMinimi, setTitle, setInfo, addFriendsSay, addRelationShip } = userSlice.actions
 export default userSlice.reducer

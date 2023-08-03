@@ -3,9 +3,9 @@ import cyworld from "./modules/cyworldSlice";
 import join from "./modules/joinSlice";
 import user from "./modules/userSlice";
 import music from "./modules/musicBoxSlice";
-import musicItem from "./modules/musicItemSlice";
 import diary from "./modules/diarySlice";
-import cart from "./modules/musicCartSlice";
+import profile from "./modules/profileSlice";
+import guest from "./modules/guestSlice";
 
 export const store = configureStore({
     reducer: {
@@ -13,8 +13,8 @@ export const store = configureStore({
       join,
       user,
       music,
-      musicItem,
       diary,
-      cart
+      profile,
+      guest
     }
 });
