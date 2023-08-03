@@ -1,17 +1,18 @@
 import { Icon } from '@iconify/react';
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 import { updateData } from '../../../store/modules/diarySlice';
+import { editDiary } from '../../../store/modules/userSlice';
 
 const Diary_dailyEdit = () => {
+    const { user, userData } = useSelector(state => state.user); //user=현재 로그인한 사람의 데이터
+    const { userID } = useParams(); 
+    const nowUser = userData.find(item => item.emailID === userID); //미니홈피 주인의 데이터
+    
     const dispatch = useDispatch()   
     const navigate = useNavigate()
-
-    const {editData} = useSelector(state => state.diary)
-    const [editText, setEditText] = useState(editData)
-    const {id, date, substance, updTime } = editText
-
+    
     const cur = new Date() 
     const week = ['일','월','화','수','목','금','토']
     const curYear = cur.getFullYear()
@@ -20,6 +21,10 @@ const Diary_dailyEdit = () => {
     const curDay = week[cur.getDay()]
     const curHour = String(cur.getHours()).padStart(2,'0')    
     const curMinute = String(cur.getMinutes()).padStart(2,'0')   
+    
+    const {editData} = useSelector(state => state.diary)
+    const [editText, setEditText] = useState(editData)
+    const {id, date, substance, updTime } = editText
 
     const changInput = (e) => {
         const {value} = e.target
@@ -30,9 +35,10 @@ const Diary_dailyEdit = () => {
         e.preventDefault()
         editText.updTime = `${curYear}.${curMonth}.${curDate} ${curDay} ${curHour}:${curMinute}` //2023.07.20 목 12:23
         if(!substance) {return alert('입력된 내용이 없습니다! 확인해주세요.')}
-        dispatch(updateData(editText))
+        // dispatch(updateData(editText))
+        dispatch(editDiary(editText))
         setEditText({substance:'', updTime:''})
-        navigate('/zoa/diary')
+        navigate(`/${user.emailID}/diary`)
     }
 
     return (

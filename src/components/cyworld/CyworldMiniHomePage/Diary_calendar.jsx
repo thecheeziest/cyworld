@@ -3,22 +3,29 @@ import Calendar from 'react-calendar';
 import moment from 'moment';
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { showDailyData, sortData } from '../../../store/modules/diarySlice';
+import {  showDailyData, sortData } from '../../../store/modules/diarySlice';
+import { useParams } from 'react-router-dom';
 
 const Diary_calendar = () => {
     const dispatch = useDispatch()
-    const {data} = useSelector(state => state.diary)    
     const [value, onChange] = useState(new Date()) //클릭한 날짜
-    const activeDate = moment(value).format('YYYY.MM.DD'); // 클릭한 날짜 //2023.07.19, string
+    const activeDate = moment(value).format('YYYY.MM.DD'); // 날짜포맷변환 string, 2023.07.19    
+
+    // userSlice
+    const { userData } = useSelector(state => state.user); 
+    const { userID } = useParams(); 
+    const nowUser = userData.find(item => item.emailID === userID); // nowUser = 주인장의 데이터만 가져와라
+    const data = nowUser.userDiary ? nowUser.userDiary : [] // nowUserData = 주인장에게 userDiary가 존재하면 그대로, 없다면 userDiary:[]
     
+    // 데이터가 업데이트될 때마다 
     useEffect(()=>{
-        const filteredData = data.filter(item => item.date.slice(0,10) === activeDate)
-        dispatch(showDailyData(filteredData))
-        dispatch(sortData())
+        const filteredData = data.filter(item => item.date.slice(0,10) === activeDate) || []
+        dispatch(showDailyData(filteredData)) // put dailyData
+        dispatch(sortData(data))
     },[activeDate, data])
 
     return (
-        <div className='diary-calendar'>
+        <div className='diary-calendar'>    
             <Calendar 
                 onChange={onChange}  
                 value={value}  
@@ -26,7 +33,6 @@ const Diary_calendar = () => {
                 prev2Label={null}
                 showNeighboringMonth={false}
                 formatDay={(locale, date) => moment(date).format('D')}
-                // onActiveStartDateChange={({ activeStartDate }) => getActiveMonth(activeStartDate)}  // 받아온 인자(activeStartDate)에 따라 현재 보여지는 달(activeMonth)의 State를 변경하는 함수
             />
             <div className="sel-show">
                 <p>{moment(value).format("MM.DD")}</p>
