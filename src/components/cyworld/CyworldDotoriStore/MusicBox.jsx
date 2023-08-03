@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { MusicBoxContainer } from '../../styled/cyworldStyle';
+import { CyworldCart, MusicBoxContainer } from '../../styled/cyworldStyle';
 import MusicBoxList from './MusicBoxList';
 import { Icon } from '@iconify/react';
 import MusicBasket from './MusicBasket';
@@ -39,15 +39,15 @@ const MusicBox = ({ item }) => {
                     placeholder='제목을 검색해주세요.'
                     value={searchKeyword}
                     onChange={(e) => setSearchKeyword(e.target.value)}/>
-                <button onClick={handleSearch}><Icon icon="ion:search" color="#f60" width="30"/></button>
-                <div className='basket'>
-                    <h5>{cart.length}곡 담겨졌습니다.</h5>
-                    <button onClick={toggleBasket}>
-                        <img src="https://t1.daumcdn.net/cfile/blog/222CEC4B5549C75411" alt="" />
+                    <button className="searchBtn" onClick={handleSearch}><Icon icon="ion:search" color="#f60" width="30"/></button>
+                    <CyworldCart>
+                    <button className='cartBtn' onClick={toggleBasket}>
+                        <p>장바구니</p>
+                        <img src="./images/dotoristore/music_cart_btn.gif" alt="" />
                     </button>
-                    <div className={`basketList ${isBasketVisible ? 'open' : ''}`}>
+                    <div className={`basketList ${isBasketVisible ? '' : 'open'}`}>
                         {/* 장바구니 컴포넌트를 보이거나 숨김 */}
-                       <MusicBasket item={music}/>
+                    <MusicBasket item={music}/>
                     </div>
                 </CyworldCart>
             </div>

@@ -1093,7 +1093,7 @@ export const CyworldCart = styled.div`
     border-radius: 15px 15px 0px 15px;
     overflow-y: auto;
     transition: 0.5s;
-    &.open { width: 550px; height: 900px; bottom: 120px; right: 50px; }
+    &.open { width: 550px; height: 80vh; bottom: 120px; right: 50px; }
     table {
         width: 90%;
         max-height: 650px;
