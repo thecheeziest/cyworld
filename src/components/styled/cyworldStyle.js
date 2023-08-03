@@ -1354,11 +1354,16 @@ background: #EDEDED;
     justify-content: space-between;
     padding-top: 20px;
     .imgBox {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
         margin-top: 10px;
-        margin-left: 10px;
+        /* margin-left: 10px; */
         img {
             width: 350px;
-            height: 400px;
+            height: 350px;
+            padding-left: 15px;
+            padding-bottom: 15px;
          }
     }
     .info-text {
@@ -1371,6 +1376,7 @@ background: #EDEDED;
             }
             input {
                 width: 250px !important;
+                /* width: 250px;  */
                 text-indent: 10px;
                 margin-right: 25px;
             }
@@ -1660,6 +1666,12 @@ export const MusicBoxContainer= styled.div `
         button {background:none; border:none; position:relative; left:875px; top:7px; }
     .basket {
         position: relative;
+        h5 {
+                position:fixed;
+                bottom:185px;
+                right: 94px;
+                font-size: 22px;
+            }
         button{
             img {
                 width: 159px; height: 150px;
@@ -1678,6 +1690,7 @@ export const MusicBoxContainer= styled.div `
         border: 1px solid #FF6600;
         background: #FF6600;
         /* border-radius: 15px; */
+        overflow-y: scroll;
         table {
     width: 90%;
     margin: 0 auto;

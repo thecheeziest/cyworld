@@ -1,18 +1,18 @@
 import { Icon } from '@iconify/react';
 import { useDispatch, useSelector} from 'react-redux';
-import { toggleLike } from '../../../store/modules/musicItemSlice';
 import { useState } from 'react';
 import CyworldModal from './CyworldModal';
 import { setData } from '../../../assets/api/cyworldData';
 import Numeral from "numeral";
-import { addCart } from '../../../store/modules/musicCartSlice';
+import { addCart, toggleLike } from '../../../store/modules/musicBoxSlice';
 
 
-const MusicBoxItem = ({ item }) => {
+const MusicBoxItem = ({item}) => {
   const { rank, poster, state, album, title, singer,done,like } = item;
   const dispatch = useDispatch();
   const [localLike, setLocalLike] = useState(false); // 로컬 상태 추가
   const [isModalOpen, setIsModalOpen] = useState(false); // 모달 열림 상태 추가
+  const isItemInCart = useSelector(state => state.music.carts.some(cartItem => cartItem.id === item.id));
   const LikeClick = () => {
     setLocalLike((prevLocalLike) => !prevLocalLike);
     // const data = [/* 데이터 배열 */]; 
@@ -25,11 +25,13 @@ const MusicBoxItem = ({ item }) => {
     setIsModalOpen(!isModalOpen);
   };
 
-  //카트 내용
-  const cart = useSelector(state => state.cart.carts);
-
   const addToCart = () => {
-    dispatch(addCart(item));
+    if (isItemInCart) {
+      // 해당 음악이 이미 카트에 있을 경우 알림 
+      alert('해당음악은 장바구니의 담겨 있습니다.');
+    } else {
+      dispatch(addCart(item));
+    }
   };
 
   return (
