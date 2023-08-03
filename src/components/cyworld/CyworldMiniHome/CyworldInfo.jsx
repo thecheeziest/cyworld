@@ -10,7 +10,7 @@ const CyworldInfo = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const { text, isInfo } = useSelector(state => state.cyworld);
-    const { user, userData } = useSelector(state => state.user);
+    const { user, userData c} = useSelector(state => state.user);
 
     const { userID } = useParams();
     const nowUser = userData.find(item => item.emailID === userID);
