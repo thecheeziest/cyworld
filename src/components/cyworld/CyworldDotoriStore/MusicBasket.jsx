@@ -76,7 +76,7 @@ const MusicBasket = ({item}) => {
                     </tbody>
               </table>
               <h3>선택한 곡 수 : </h3> <h3>{cart.length} 곡</h3>
-              <h4 onClick={AddToBasket}>배경음악 담기<Icon icon="bxs:music" width="23"/></h4>
+              <h4 onClick={AddToBasket} className='cart-save'>배경음악 담기<Icon icon="bxs:music" width="23"/></h4>
               {cart.length === 0 && (
                 <div className='BasketEmpty'>
                   <h2>음악 바구니가 비어있습니다. 음악을 담아주세요!</h2>

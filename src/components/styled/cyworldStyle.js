@@ -39,7 +39,7 @@ footer {
 export const CyworldHomeContainer = styled.div`
 padding: 50px 0;
 box-sizing: border-box;
-background-image: url(../images/bg.jpg);
+background-image: url(./images/bg.jpg);
 background-size: cover;
 background-repeat: no-repeat;
 background-position: 0 0;
@@ -101,20 +101,20 @@ background-position: 0 0;
                     text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000; 
                 }
                 &.go-hp {
-                    background-image: url(../images/go_hp.jpg);
-                    &:hover { background-image: url(../images/go_hp_hover.jpg); }
+                    background-image: url(./images/go_hp.jpg);
+                    &:hover { background-image: url(./images/go_hp_hover.jpg); }
                 }
                 &.join {
-                    background-image: url(../images/join_bg.jpg);
-                    &:hover { background-image: url(../images/join_bg_hover.jpg); }
+                    background-image: url(./images/join_bg.jpg);
+                    &:hover { background-image: url(./images/join_bg_hover.jpg); }
                 }
                 &.login {
-                    background-image: url(../images/login_bg.jpg);
-                    &:hover { background-image: url(../images/login_bg_hover.jpg); }
+                    background-image: url(./images/login_bg.jpg);
+                    &:hover { background-image: url(./images/login_bg_hover.jpg); }
                 }
                 &.logout {
-                    background-image: url(../images/logout_bg.jpg);
-                    &:hover { background-image: url(../images/logout_bg_hover.jpg); }
+                    background-image: url(./images/logout_bg.jpg);
+                    &:hover { background-image: url(./images/logout_bg_hover.jpg); }
                 }
             }
         }
@@ -163,7 +163,7 @@ background-position: 0 0;
 export const CyworldLoginContainer = styled.div`
 padding: 50px 0;
 box-sizing: border-box;
-background-image: url(../images/bg.jpg);
+background-image: url(./images/bg.jpg);
 background-size: cover;
 background-repeat: no-repeat;
 background-position: 0 0;
@@ -237,7 +237,7 @@ background-position: 0 0;
 export const CyworldJoinContainer = styled.div`
 padding: 50px 0;
 box-sizing: border-box;
-background-image: url(../images/bg.jpg);
+background-image: url(./images/bg.jpg);
 background-size: cover;
 background-repeat: no-repeat;
 background-position: 0 0;
@@ -362,9 +362,9 @@ div {
 .go-bgm {
     h3 { color: #9F77ED; }
     button {
-        background-image: url(../images/go_bgm.jpg);
+        background-image: url(./images/go_bgm.jpg);
         &:hover {
-            background-image: url(../images/go_bgm_hover.jpg);
+            background-image: url(./images/go_bgm_hover.jpg);
             color: #9F77ED;
         }
     }
@@ -372,9 +372,9 @@ div {
 .go-theme {
     h3 { color: #4ADE78; }
     button {
-        background-image: url(../images/go_theme.jpg);
+        background-image: url(./images/go_theme.jpg);
         &:hover {
-            background-image: url(../images/go_theme_hover.jpg);
+            background-image: url(./images/go_theme_hover.jpg);
             color: #4ADE78;
         }
     }
@@ -382,9 +382,9 @@ div {
 .go-minimi {
     h3 { color: #ed7793; }
     button {
-        background-image: url(../images/go_minimi.jpg);
+        background-image: url(./images/go_minimi.jpg);
         &:hover {
-            background-image: url(../images/go_minimi_hover.jpg);
+            background-image: url(./images/go_minimi_hover.jpg);
             color: #ed7793;
         }
     }
@@ -395,7 +395,7 @@ div {
 export const CyworldMiniHP = styled.div`
 width: 100vw;
 height: 100vh;
-/* background-image: url(../images/skin1.jpg); */
+/* background-image: url(./images/skin1.jpg); */
 padding-top: 50px;
 box-sizing: border-box;
 .hp-con {
@@ -452,7 +452,7 @@ box-sizing: border-box;
             }
             width: 250px;
             height: 65px;
-            background-image: url(../images/music_bg.gif);
+            background-image: url(./images/music_bg.gif);
         }
         .logout {
             background: #FFF;
@@ -493,13 +493,13 @@ box-sizing: border-box;
         border: 1px solid #BABABA;
         box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
         
-        background-image: url(../images/go_dotori.jpg);
+        background-image: url(./images/go_dotori.jpg);
         background-size: cover;
         background-repeat: no-repeat;
         background-position: 50% 50%;
         &:hover {
             color: #FF6600;
-            background-image: url(../images/go_dotori_hover.jpg);
+            background-image: url(./images/go_dotori_hover.jpg);
         }
     }
 }
@@ -1062,6 +1062,53 @@ strong {
             top: 10%; left: 5%;
         }
     }
+}
+`
+
+// CyworldCart
+export const CyworldCart = styled.div`
+::-webkit-scrollbar {display: none;}
+.cartBtn {
+    width: 350px; height: 100px;
+    background: #FF6600;
+    position: fixed;
+    right: 50px; bottom: 30px;
+    border-radius: 15px;
+    z-index: 5;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border: 1px solid #FF6600;
+    &:hover { background: #ffccaa; border: 1px solid #FFF; p { color: #FF6600; }}
+    p { font-size: 25px; font-weight: 600; color: #FFF; margin-left: 100px; }
+    img { margin-right: 20px; height: 70px; }
+}
+.basketList {
+    width: 330px; height: 0px;
+    position:fixed;
+    right: 55px; bottom: 120px;
+    z-index: 3;
+    background: rgba(255, 255, 255, 0.8);
+    border: 1px solid #FF6600;
+    border-radius: 15px 15px 0px 15px;
+    overflow-y: auto;
+    transition: 0.5s;
+    &.open { width: 550px; height: 900px; bottom: 120px; right: 50px; }
+    table {
+        width: 90%;
+        max-height: 650px;
+        margin: 0 auto;
+        .w8 {width:10%}
+        .w9 {width:20%}
+        .w10 {width:15%}
+        .w11 {width:10%}
+        tr:last-child td {border-bottom:1px solid #000}
+        th , td { border-bottom: 1px solid #DCDCDC; vertical-align: middle; text-align: center;}
+        th { border-top: 1px solid #000 ; height:50px }
+        td { padding:5px ; }
+    }
+    svg { cursor: pointer; }
+    .cart-save { cursor: pointer; }
 }
 `
 // 현아 끝
@@ -1701,7 +1748,6 @@ export const MusicBoxContainer= styled.div `
         /* color:#fff; */
     }
     }    
-
     .searchText {
         input{
             width:442px; height:45px; border-radius:15px;
@@ -1710,48 +1756,7 @@ export const MusicBoxContainer= styled.div `
             text-indent: 20px;
             border: 4px solid #FF6600;
         }
-        button {background:none; border:none; position:relative; left:875px; top:7px; }
-    .basket {
-        position: relative;
-        h5 {
-                position:fixed;
-                bottom:185px;
-                right: 94px;
-                font-size: 22px;
-            }
-        button{
-            img {
-                width: 159px; height: 150px;
-                position:fixed;
-                bottom: 40px;
-                right: 98px;
-            }
-        }
-    }
-    .basketList {
-        z-index: 3;
-        position:fixed;
-        bottom: 220px;
-        right: 78px;
-        width: 570px; height: 600px;
-        border: 1px solid #FF6600;
-        background: #FF6600;
-        /* border-radius: 15px; */
-        overflow-y: scroll;
-        table {
-    width: 90%;
-    margin: 0 auto;
-    .w8 {width:10%}
-    .w9 {width:20%}
-    .w10 {width:15%}
-    .w11 {width:10%}
-    tr:last-child td {border-bottom:1px solid #000}
-        th , td { border-bottom: 1px solid #DCDCDC; vertical-align: middle; text-align: center; }
-        th { border-top: 1px solid #000 ; height:50px }
-        td { padding:5px ;
-    }
- }
-}
+        .searchBtn {background:none; border:none; position:relative; left:875px; top:7px; }
 }
 `
 export const MusicBoxListContainer= styled.div `

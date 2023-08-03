@@ -26,6 +26,7 @@ const MusicBox = ({ item }) => {
     // 장바구니 보이기/숨기기 함수
     const toggleBasket = () => {
         setIsBasketVisible(!isBasketVisible);
+        console.log(isBasketVisible)
     };
 
     return (
@@ -44,11 +45,11 @@ const MusicBox = ({ item }) => {
                     <button onClick={toggleBasket}>
                         <img src="https://t1.daumcdn.net/cfile/blog/222CEC4B5549C75411" alt="" />
                     </button>
-                    {isBasketVisible &&  <div className='basketList'>
+                    <div className={`basketList ${isBasketVisible ? 'open' : ''}`}>
                         {/* 장바구니 컴포넌트를 보이거나 숨김 */}
                        <MusicBasket item={music}/>
-                    </div>}
-                </div>
+                    </div>
+                </CyworldCart>
             </div>
         <MusicBoxList searchKeyword={searchKeyword} /> {/* 검색어를 MusicBoxList 컴포넌트로 전달 */}
         </MusicBoxContainer> 
