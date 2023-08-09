@@ -12,7 +12,6 @@ const Manager_miniroom = () => {
 
     const dispatch = useDispatch();
     let chkRoom = 0;
-
     return (
         <CyworldSetting>
             {
@@ -25,13 +24,18 @@ const Manager_miniroom = () => {
                 <div className="set-home">
                     {
                         nowUser.userMiniroom.map(item => <p key={item.id}>
-                            <label htmlFor={item.id} style={{
-                                backgroundImage: item.roomImg
+                            <label htmlFor={item.id} 
+                                
+                                style={{backgroundImage: `url(${item.url})`
                             }}></label>
                             <input type="radio" id={item.id} name="miniroom" onChange={e => chkRoom = e.target.id} />
                         </p>)
                     }
                 </div>
+                <p className='set del'>
+                    <button>선택 삭제</button>
+                    <button>전체 삭제</button>
+                </p>
                 </>
                 :
                 <p className='none'>보유 중인 미니룸이 없습니다.</p>

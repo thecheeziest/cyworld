@@ -12,6 +12,7 @@ export const userSlice = createSlice({
     name: 'user',
     initialState,
     reducers: { 
+        // 영은시작
         addDiary(state, action){
             state.user.userDiary = state.user.userDiary || []; 
             state.user.userDiary.push({...action.payload, updTime:null, comment:[]})
@@ -42,7 +43,15 @@ export const userSlice = createSlice({
         delComDiary(state, action){
 
         },
-        // diary 끝
+        addMiniroom(state, action){
+            // 리셋 state.user.userMiniroom = [];    
+            // userMiniroom에 id가 일치하는 게 있으면 제외하고 추가해야한다
+            state.user.userMiniroom = state.user.userMiniroom || []            
+            state.user.userMiniroom.push(...action.payload) //스프레드연산자를 사용하지 않으면 구매버튼 누를 때마다 [{}] 형태로 생성된다.({}형태로만 들어가야한다.)
+            state.userData = state.userData.map(item => item.emailID === state.user.emailID ? state.user : item); 
+            localStorage.setItem('user', JSON.stringify(state.user)); 
+            localStorage.setItem('userData', JSON.stringify(state.userData));
+        },
         changeInput(state, action) {
             const { name, value } = action.payload;
             state.logUser = { ...state.logUser, [name]: value };
@@ -80,7 +89,6 @@ export const userSlice = createSlice({
         onMiniroom(state, action) {
             state.user.nowMiniroom = state.user.nowMiniroom || '';
             state.user.nowMiniroom = `url(../images/miniroom/miniroom${action.payload}.jpg)`
-
             state.userData = state.userData.map(item => item.emailID === state.user.emailID ? state.user : item); // userData도 같이 업데이트
             localStorage.setItem('user', JSON.stringify(state.user)); // user 로컬스토리지에 저장
             localStorage.setItem('userData', JSON.stringify(state.userData)); // userData 로컬스토리지에 저장
@@ -139,5 +147,5 @@ export const userSlice = createSlice({
     }
 })
 
-export const { addDiary, delDiary, editDiary, addComDiary, delComDiary, changeInput, login, logout, addSkin, onSkin, onMiniroom, onMinimi, setTitle, setInfo, addFriendsSay, addRelationShip } = userSlice.actions
+export const { addDiary, delDiary, editDiary, addComDiary, delComDiary, addMiniroom, changeInput, login, logout, addSkin, onSkin, onMiniroom, onMinimi, setTitle, setInfo, addFriendsSay, addRelationShip } = userSlice.actions
 export default userSlice.reducer

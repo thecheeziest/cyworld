@@ -14,7 +14,7 @@ const MiniHome = () => {
     // 도메인에 맞는 데이터 출력
     
     useEffect(() => {
-        navigate(`/${userID}`); // 새로고침 될 때마다 미니홈피 홈 화면으로
+        // navigate(`/${userID}`); // 새로고침 될 때마다 미니홈피 홈 화면으로
         localStorage.setItem('user', JSON.stringify(user));
         // user 데이터가 변경될 때마다 로컬 스토리지에 저장
         
