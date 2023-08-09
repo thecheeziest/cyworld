@@ -44,7 +44,7 @@ const MiniHome = () => {
     },[userID])
 
     return (
-        <CyworldMiniHP style={{ backgroundImage: nowUser.nowSkin ? nowUser.nowSkin : 'url(../images/skin/skin1.jpg)' }}>
+        <CyworldMiniHP style={{ backgroundImage: nowUser.nowSkin ? nowUser.nowSkin : 'url(./images/skin/skin1.jpg)' }}>
                 <div className="hp-con">
                     <div className="hp-sec1">
                     {
