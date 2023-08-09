@@ -79,7 +79,7 @@ export const userSlice = createSlice({
         },
         onMiniroom(state, action) {
             state.user.nowMiniroom = state.user.nowMiniroom || '';
-            state.user.nowMiniroom = state.user.userMiniroom.find(item => item.id === Number(action.payload)).imgURL;
+            state.user.nowMiniroom = state.user.userMiniroom.find(item => item.id === Number(action.payload)).url;
 
             state.userData = state.userData.map(item => item.emailID === state.user.emailID ? state.user : item); // userData도 같이 업데이트
             localStorage.setItem('user', JSON.stringify(state.user)); // user 로컬스토리지에 저장

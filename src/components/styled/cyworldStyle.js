@@ -589,6 +589,7 @@ margin: auto;
                 text-indent: 15px;
                 font-size: 18px;
                 position: relative;
+                color: #626262;
                 span {
                     color: #626262;
                     font-family: 'NeoDunggeunmoPro-Regular';
