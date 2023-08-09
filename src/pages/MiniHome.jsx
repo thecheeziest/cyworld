@@ -29,6 +29,8 @@ const MiniHome = () => {
         navigate('/login');
         dispatch(falseOpen())
     }
+    
+    const selectedMusic = useSelector(state => state.music.selectedMusic);
 
     useEffect( () => {
         sendUser = data.find(item => item.send == user.name && item.arrive == nowUser.name)
@@ -57,7 +59,17 @@ const MiniHome = () => {
                             }
                         </div>
                         <div className="now-music">
-                            <p>{nowUser.nowBgm ? nowUser.nowBgm : '음악 선물하기'}</p>
+                        {userID === user.emailID ? (
+                            selectedMusic ? (
+                                <p>
+                                    {selectedMusic.title}, {selectedMusic.singer}
+                                </p>
+                            ) : (
+                                <p>음악을 설정해주세요</p>
+                            )
+                        ) : (
+                            <p>음악을 설정해주세요</p>
+                        )}
                         </div>
                         <div className="logout">
                             <button onClick={onLogout}>로그아웃</button>

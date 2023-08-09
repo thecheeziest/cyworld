@@ -165,7 +165,23 @@ export const userSlice = createSlice({
                     status : '대기중'
                 }
             ]
-            console.log(state.relationData)
+          console.log(state.relationData)
+        },
+        addGuest(state, action){
+            state.user.userGuest = state.user.userGuest || []; 
+            state.user.userGuest = action.payload
+            state.userData = state.userData.map(item => item.emailID === state.user.emailID ? state.user : item) 
+            localStorage.setItem('user', JSON.stringify(state.user)) 
+            localStorage.setItem('userData', JSON.stringify(state.userData))     
+        },
+        addBgm(state, action){
+            state.user.userBgm = state.user.userBgm || []; 
+            // state.user.userBgm = action.payload
+            
+            state.user.userBgm.push(action.payload)
+            state.userData = state.userData.map(item => item.emailID === state.user.emailID ? state.user : item) 
+            localStorage.setItem('user', JSON.stringify(state.user)) 
+            localStorage.setItem('userData', JSON.stringify(state.userData))     
         },
         trueOpen(state, action) {
             state.isOpen = true
@@ -185,5 +201,5 @@ export const userSlice = createSlice({
     }
 })
 
-export const { addDiary, delDiary, editDiary, addComDiary, delComDiary, changeInput, login, logout, addSkin, onSkin, addMiniroom, onMiniroom, addMinimi, onMinimi, delMinimi, allDelMinimi, setTitle, setInfo, addFriendsSay, addRelationShip, trueOpen, falseOpen, declineRel, acceptRel } = userSlice.actions
+export const { addDiary, delDiary, editDiary, addComDiary, delComDiary, changeInput, login, logout, addSkin, onSkin, addMiniroom, onMiniroom, addMinimi, onMinimi, delMinimi, allDelMinimi, setTitle, setInfo, addFriendsSay, addRelationShip, trueOpen, falseOpen, declineRel, acceptRel, addGuest, addBgm } = userSlice.actions
 export default userSlice.reducer

@@ -974,28 +974,47 @@ export const CyworldJukeboxPg = styled.div`
         align-items: center;
         padding-left: 20px;
         box-sizing: border-box;
+
         &.on {
             strong { color: #2397C0; }
             background: #dbf2f9;
         }
+
         &.none {
             height: 100px;
             justify-content: center;
             background: #f4f4f4;
         }
+
         b {
             color: #999;
+            margin-right: 20px;
         }
+
         strong {
             margin: 0;
+            margin-right: 10px;
             font-size: 18px;
             color: #292929;
         }
+
         em {
             margin-left: 20px;
         }
-    }
-}
+
+            .HistoryBtn {
+                display: flex;
+            justify-content: flex-end;
+            align-items: center; 
+            margin-left: 200px;
+            .h, .c {
+                margin-left: 10px;
+                background: #fff;
+                }
+            
+                }
+            }
+        }
 `
 
 // CyworldSetting
@@ -1124,7 +1143,7 @@ strong {
 export const CyworldCart = styled.div`
 ::-webkit-scrollbar {display: none;}
 .cartBtn {
-    width: 350px; height: 100px;
+    width: 294px; height: 100px;
     background: #FF6600;
     position: fixed;
     right: 50px; bottom: 30px;
@@ -1135,16 +1154,32 @@ export const CyworldCart = styled.div`
     align-items: center;
     border: 1px solid #FF6600;
     &:hover { background: #ffccaa; border: 1px solid #FFF; p { color: #FF6600; }}
+    p { font-size: 25px; font-weight: 600; color: #FFF;  }
+=======
     p { font-size: 25px; font-weight: 600; color: #FFF;
         /* margin-left: 100px; */
         margin: auto;
+        /* 초롱 margin-left: 55px; */
     }
     img { margin-right: 20px; height: 70px; }
+    .cartCnt {
+        position: fixed;
+        bottom:104px;
+        right: 316px;
+        width: 35px;
+        height: 35px;
+        border: 3px solid #000;
+        background: #000;
+        border-radius: 50%;
+        color: #DCDCDC;
+        font-weight: 700;
+        text-align: center;
+    }
 }
 .basketList {
-    width: 330px; height: 0px;
+    width: 250px; height: 0px;
     position:fixed;
-    right: 55px; bottom: 120px;
+    right: 52px; bottom: 120px;
     z-index: 3;
     background: rgba(255, 255, 255, 0.8);
     border: 1px solid #FF6600;
@@ -2037,13 +2072,57 @@ export const CyworldGuestWr = styled.div`
          }
          button {
             width: 70px;
-            margin-top: 20px;
+            margin-top: 11px;
             /* align-self: flex-end; */
              &:hover {
                  color: #fff;
                  background: #2397C0;
      }
         }
+        }
+       .GuestWrit_map{
+           display: inline-block;
+           /* align-items: center; 요소들을 수직 가운데 정렬 */
+           padding: 10px 10px;
+           border-bottom: dashed 1px #BABABA;
+           padding-bottom: 20px;
+           img {
+            width: 200px;
+            height: 200px;
+            border-radius: 10%;
+            border: 1px solid #BABABA;
+            margin-right:10px
+         }
+         textarea{
+            /* display:inline-block; */
+            border-radius: 10px;
+            width: 500px;
+            height: 190px;
+            margin: 0 auto;
+            padding-top: 10px;
+            vertical-align: auto;
+            &::placeholder {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            }
+         }
+         .mapBtn{
+            display: flex;
+            margin-left: 489px;
+             button {
+                width: 70px;
+                margin-top: 11px;
+                margin-left: 20px;
+                /* align-self: flex-end; */
+                 &:hover {
+                     color: #fff;
+                     background: #2397C0;
+         }
+            }
+         }
         }
        .Guestbox_Wr{
            display: flex;
@@ -2165,6 +2244,14 @@ export const MusicBoxContainer= styled.div `
     h4 {  padding-left:70px; font-size: 20px;
         font-weight: 600;
         display: inline-block;}
+        .BasketBtn{
+            background: #ff6600;
+            font-size: 22px;
+            color: #fff;
+            border-radius: 10px;
+            border: 1px solid;
+            margin-left: 199px;
+        }
     .BasketMessage {
       h2{
         padding: 10px 0;
