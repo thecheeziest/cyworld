@@ -9,7 +9,7 @@ import Home_comment from '../components/cyworld/CyworldMiniHomePage/Home_comment
 import { useParams } from 'react-router-dom';
 
 const MiniMain = () => {
-    const { userData } = useSelector(state => state.user);
+    const { userData, isOpen } = useSelector(state => state.user);
     const { userID } = useParams();
     const nowUser = userData.find(item => item.emailID === userID);
     // 도메인에 맞는 데이터 출력

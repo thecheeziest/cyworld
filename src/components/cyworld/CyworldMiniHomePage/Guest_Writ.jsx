@@ -61,12 +61,11 @@ import { addGuest } from '../../../store/modules/userSlice';
         }, [dispatch]);
 
     return (
-
        <CyworldGuestWr>
       <div className='GuestText_Wr'>
         <div className='GuestWrit_Wr'>
         <p>No {guestList.length === 0 ? initialNo : guestList[guestList.length - 1].no + 1} {user.emailID} ({date})</p>
-          <img src="https://www.cyworld.com/img/gif/ani_santa_3x.gif" alt="" />
+          <img src={user.nowMinimi ? user.nowMinimi : 'https://via.placeholder.com/200x200'} alt='미니미' />
           <textarea
             name=""
             id=""

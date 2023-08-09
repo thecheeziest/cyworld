@@ -79,8 +79,11 @@ background-position: 0 0;
         .login { margin: 0 }
         .btn {
             width: 750px;
-            display: flex;
-            justify-content: space-between;
+            p {
+                display: flex;
+                justify-content: space-between;
+                margin-top: 50px;
+            }
             button {
                 width: 350px;
                 height: 300px;
@@ -113,9 +116,16 @@ background-position: 0 0;
                     &:hover { background-image: url(./images/login_bg_hover.jpg); }
                 }
                 &.logout {
-                    background-image: url(./images/logout_bg.jpg);
+                    display: block;
+                    margin: 50px auto 0;
+                    width: 600px; height: 70px;
+                    padding: 0;
                     &:hover { background-image: url(./images/logout_bg_hover.jpg); }
                 }
+                &.go-store {
+                    background-image: url(./images/go_dotori.jpg);
+                    &:hover { background-image: url(./images/go_dotori_hover.jpg); }
+                    }
             }
         }
     }
@@ -579,6 +589,7 @@ margin: auto;
                 text-indent: 15px;
                 font-size: 18px;
                 position: relative;
+                color: #626262;
                 span {
                     color: #626262;
                     font-family: 'NeoDunggeunmoPro-Regular';
@@ -621,9 +632,11 @@ margin: auto;
     .home-title {
         display: flex;
         padding: 0 30px;
-        justify-content: space-between;
         align-items: end;
+        position: relative;
         button {
+            position: absolute;
+            right: 20px;
             width: 40px;
             height: 25px;
             font-size: 15px;
@@ -634,6 +647,9 @@ margin: auto;
             border: none;
             letter-spacing: 0;
             margin-right: 10px;
+        }
+        .edit {
+            right: 80px;
         }
     }
     h2 {
@@ -659,6 +675,7 @@ margin: auto;
         margin-right: 23px;
         padding: 15px;
         box-sizing: border-box;
+        overflow: scroll;
         .content {
             border: 1px solid #E6E6E6;
             overflow: auto;
@@ -1036,13 +1053,22 @@ strong {
     display: flex;
     justify-content: space-between;
     margin: 20px 25px;
-    button { width: 70px; background: #f4f4f4; border: 1px solid #bababa; &:hover { background: #FF6600; color: #FFF; } }
+    button { width: 80px; background: #f4f4f4; border: 1px solid #bababa; &:hover { background: #FF6600; color: #FFF; } &:first-child { margin-right: 10px; } }
+    &.del {
+        justify-content: right;
+    }
 }
 .set-home {
     padding: 0 15px;
     justify-content: space-between;
     flex-wrap: wrap;
     display: flex;
+    &.minimi {
+        label {
+            width: 220px; height: 200px;
+            background-size: auto 150px;
+        }
+    }
     p {
         position: relative;
         margin-bottom: 30px;
@@ -1081,6 +1107,35 @@ strong {
             top: 10%; left: 5%;
         }
     }
+    &.bgmList {
+        display: block;
+        label {
+            width: 100%;
+            height: 50px;
+            border-radius: 0;
+            border-left: none;
+            border-right: none;
+            text-indent: 77px;
+            line-height: 50px;
+            &:hover {
+                &::after {
+                    content: "Click!";
+                    display: block;
+                    line-height: 50px;
+                    background: #FFF;
+                    opacity: 0.8;
+                    text-align: center;
+                    color: #FF6600;
+                    font-size: 20px;
+                    letter-spacing: 1px;
+                }
+            }
+        }
+        input {
+            top: 50%;
+            transform: translateY(-50%);
+        }
+    }
 }
 `
 
@@ -1099,7 +1154,13 @@ export const CyworldCart = styled.div`
     align-items: center;
     border: 1px solid #FF6600;
     &:hover { background: #ffccaa; border: 1px solid #FFF; p { color: #FF6600; }}
-    p { font-size: 25px; font-weight: 600; color: #FFF; margin-left: 55px; }
+    p { font-size: 25px; font-weight: 600; color: #FFF;  }
+=======
+    p { font-size: 25px; font-weight: 600; color: #FFF;
+        /* margin-left: 100px; */
+        margin: auto;
+        /* 초롱 margin-left: 55px; */
+    }
     img { margin-right: 20px; height: 70px; }
     .cartCnt {
         position: fixed;
@@ -1134,21 +1195,394 @@ export const CyworldCart = styled.div`
         .w9 {width:20%}
         .w10 {width:15%}
         .w11 {width:10%}
-        tr:last-child td {border-bottom:1px solid #000}
+        tr:last-child td {border-bottom:1px solid #FF6600}
         th , td { border-bottom: 1px solid #DCDCDC; vertical-align: middle; text-align: center;}
         th { border-top: 1px solid #000 ; height:50px }
-        td { padding:5px ; }
+        td {
+            padding: 20px 0;
+            img { height: 100px; }
+        }
     }
     svg { cursor: pointer; }
-    .cart-save { cursor: pointer; }
+}
+.minimi {
+    button {
+        border: none;
+        background: #FF6600;
+        color: #FFF;
+        font-family: 'Galmuri9';
+        &:hover {
+            background: #ffccaa;
+            color: #FF6600;
+        }
+    }
+    h3 {
+        text-align: center;
+        margin: 30px 0;
+    }
+    table {
+        margin: 30px auto;
+        tbody {
+            border-top: 1px solid #FF6600;
+            button {
+                width: 70px; height: 40px;
+            }
+        }
+    }
+    .cnt {
+        text-align: center;
+        font-size: 20px;
+        b { color: #FF6600; }
+    }
+    .cart-save {
+        cursor: pointer;
+        display: block;
+        width: 250px; height: 50px;
+        margin: 20px auto;
+        font-size: 20px;
+    }
+    .go-minihp {
+        width: 250px; height: 50px;
+        font-size: 20px;
+    }
+    .BasketEmpty, .BasketMessage {
+        border-top: 1px dotted #DCDCDC;
+        border-bottom: 1px dotted #DCDCDC;
+        padding: 50px 0;
+        text-align: center;
+        font-size: 18px;
+        button {
+            width: 250px; height: 50px;
+            margin: 20px 0;
+        }
+    }
+    .BasketMessage {
+        display: none;
+        &.on { display: block; }
+    }
 }
 `
+
+// CyworldMinimi
+export const CyworldMinimi = styled.div`
+.inner {
+    padding: 150px 0;
+    width: 900px;
+    margin: auto;
+    h3 {
+        font-size: 35px;
+        margin-bottom: 10px;
+    }
+    strong {
+        color: #FF6600;
+    }
+    ul {
+        border-top: 1px dotted #dcdcdc;
+        margin-top: 20px;
+        padding-top: 50px;
+        box-sizing: border-box;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        li {
+            width: 270px;
+            height: 270px;
+            margin-bottom: 50px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: center;
+            border: 1px solid #dcdcdc;
+            box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+            padding-top: 30px;
+            box-sizing: border-box;
+            .minimi-pic {
+                width: 100%;
+                height: 150px;
+                background-repeat: no-repeat;
+                background-size: contain;
+                background-position: 50%;
+            }
+            .add {
+                width: 100%; height: 48px;
+                background: #FF6600;
+                border: none;
+                p { color: #FFF; }
+                &:hover { background: #ffccaa; p {color: #FF6600;} }
+            }
+        }
+    }
+}
+`
+
 // 현아 끝
 
 
 
 
 // 영은 시작
+export const CyworldDotoriThemeMain = styled.div`
+    width: 100%;
+    .inner {
+        position: relative;
+        width: 1400px;
+        margin: auto;
+        background: #fff;
+    }
+    /* h3, 버튼 공통 */
+    h3 { text-align: center; font-size: 25px; }
+    button {
+        width: auto; height: 40px;
+        padding: 0 20px;
+        margin: 10px 5px 20px 0;
+        background: #fff;
+        border: 1px solid #000;
+        border-radius: 20px;
+        &:last-child { margin-right: 0; }
+    }
+    .visual {
+        img { width: 100%; }
+    }
+    .collection {
+        display: flex;
+        width: 100%;
+        height: 680px;
+        padding: 45px 170px ;
+        background: #ededed;
+        box-sizing: border-box;
+        .box {
+            height: 590px;
+            background: #fff;
+        }
+        .left-box { 
+            width: 330px; 
+            strong { font-size: 20px; font-weight:900; }
+            p { margin: 10px 0 30px; font-size: 18px; color:#999; }
+            span { 
+                display: inline-block;
+                width: auto;
+                height: 30px;
+                padding: 0 10px;
+                font-size: 14px;
+                line-height: 30px; 
+                border: 1.5px solid #000;
+                border-radius: 15px;
+                &:last-child { background-color:#000; color:#fff; margin-top:10px; display: table; }
+            }
+        }
+        .center-box { 
+            width: 420px; 
+            margin-right: 25px;
+        }
+        .right-box { 
+            width: 280px; 
+        }
+    }    
+    /* 핫, 뉴 공통 */
+    .prod-box {
+        margin: 60px 0;
+        .category { text-align: center; }
+        .swiper {
+            /* =swiper-miniroom */
+            .swiper-slide {
+                /* miniroom-item */
+            
+            }
+        }
+    }
+    .hot-prod {
+
+    }
+    .new-prod {
+
+    }
+`
+
+/* 도토리상점 theme 페이지 */
+export const CyworldDotoriThemePg = styled.div`
+    .inner {
+        position: relative;
+        width: 1400px;
+        margin: auto;
+        background: #fff;
+        /* 공통 */
+        button {
+            background: #fff;
+            border: none;
+        }
+        .sub-header {
+            position: relative;
+            display: flex; justify-content: space-between; align-items: center;
+            width: 100%;
+            height: 80px;
+            z-index: 1;
+            &.fixed {
+                position: fixed; top: 0;
+                width: 1400px;
+                background: #fff;
+            }
+            li, button {
+                margin-right: 20px;
+                font-family: 'SUITE-Bold';
+                font-size: 25px;
+                cursor: pointer;
+            }
+            ul {
+                display: flex;  
+            }
+            .all-menu {
+                display: flex;
+                button {
+                    &:last-child {margin-right: 0;}
+                }
+                span {
+                    position: absolute; top: 18px; right: 130px;
+                    width: 17px; height: 17px;
+                    background: #ff6600;
+                    border-radius: 50%;            
+                    opacity: 0.5;
+                }
+            }
+        }
+        .search-box {
+            width: 100%;
+            position: relative;
+            input {
+                position: absolute; top: 0; right: 0;
+                width: 290px;
+                text-indent: 5px;
+                font-size: 18px;
+                border: none;
+                border-bottom: 2px solid #36433b;            
+            }
+            button {.icon { position: absolute; top: 0; right: 0; font-size: 25px; }}
+        }
+        .prod-list {
+            width: 100%;
+            h3 {
+                margin-top: 50px;
+                font-family: 'SUITE-Bold';
+                font-size: 40px;
+                font-weight: 500;
+            }
+            .length { margin: 5px 0 15px; }
+            ul {    
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: space-between;
+                li {
+                    position: relative; 
+                    width: 320px;
+                    margin-bottom: 60px;
+                    &:hover {
+                        span {display: block;}
+                    }
+                    span {
+                        position: absolute; top: 0; left: 0;
+                        display: none;
+                        width: 100%; height: 210px;
+                        background: rgba(255, 255, 255, 0.8);
+                        cursor: pointer;
+                        button { background: transparent; }
+                        .iconify {
+                            position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+                            font-size: 110px; color: #fff;                        
+                        }
+                    }
+                    img { width: 100%; height: 210px; object-fit: cover;}  
+                    .text {
+                        padding-left: 5px;
+                        strong { display: block; font-size: 20px; }
+                        .dotori {
+                            display: flex;
+                            font-weight: 900; color: #e64808;
+                            .iconify { 
+                                font-size: 25px;
+                            }
+                            b { margin-right: 10px; color: #e64808; text-decoration: line-through; }
+                        }
+                    } 
+                }
+            }
+        }    
+        /* 팝업시작 */ 
+        .cart-modal {
+            position: fixed; top: 200px; left: 1200px;            
+            width: 500px; height: 700px;             
+            padding: 50px 50px 0;
+            box-sizing: border-box;
+            background: #fff;
+            border: 5px solid #ff6600;
+            z-index: 1;
+            .btn-wrap {
+                display: flex;
+                justify-content: space-between;
+                button {
+                    
+                    background: #fff;
+                    border: 2px solid #ff6600;
+                    border-radius: 15px;
+
+                    font-size: 18px;
+                    width: 180px;
+                    
+                    height: 50px;
+                    &:hover {
+                        background: #ff6600;
+                        color: #fff;
+                    }                  
+                }
+            }
+            h4 {
+                    text-align: center;
+                    font-size: 25px;
+                    font-weight: 900;
+                    letter-spacing: 1px;
+            }
+            .cart-list {
+                height: 450px;
+                margin: 30px 0 20px;
+                overflow-x: hidden;
+                overflow-y: auto;
+                p { // 장바구니가 비어있습니다.
+                    margin-top: 40px;
+                    font-size: 19px;                    
+                    text-align: center;
+                }
+                .cart-item {
+                    display: flex; justify-content: space-around; align-items: center;
+                    width: 100%; height: 70px;
+                    margin-bottom: 20px;
+                    img {
+                        width: 70px; height: 70px;
+                        border-radius: 50%;
+                        object-fit:cover;
+                    }
+                    strong { font-size: 20px; }
+                    .dotori { 
+                        margin: 0;
+                        .iconify {font-size: 30px; vertical-align: sub;}
+                    }
+                    button { 
+                        border: none; 
+                        line-height:70px; 
+                        .icon {font-size:23px; vertical-align: sub; }
+                    }
+                }
+            }
+        }
+        .cart-modal:after, .cart-modal:before {
+            content: "";
+            position: absolute; left: 50%; bottom: 100%;
+            width: 0; height: 0;
+            border: solid transparent;
+            pointer-events: none;
+        }
+        .cart-modal:after { margin-left: -30px; border-color: rgba(255, 255, 255, 0); border-bottom-color: #fff; border-width: 30px; }
+        .cart-modal:before { margin-left: -37px; border-color: rgba(255, 102, 0, 0); border-bottom-color: #ff6600; border-width: 37px; }
+    }
+`
+    
 // CyworldDiaryPg 
 export const CyworldDiaryPg = styled.div`
 width: 758px;

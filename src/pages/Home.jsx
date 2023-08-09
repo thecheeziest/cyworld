@@ -32,7 +32,10 @@ const Home = () => {
                     {
                         user && Object.keys(user).length ?
                         <div className="btn">
-                            <Link to={user.emailID}><button className='go-hp'>미니홈피 입장</button></Link>
+                            <p>
+                                <Link to={user.emailID}><button className='go-hp'>미니홈피 입장</button></Link>
+                                <Link to='/dotori_store'><button className='go-store'>도토리 상점</button></Link>
+                            </p>
                             <button className='logout' onClick={onLogout}>로그아웃</button>
                         </div>
                         :

@@ -24,6 +24,7 @@ const data = [
 const initialState = {
     dailyData: [], //해당일자 데이터 //최초 필터링 데이터
     editData: {}, //편집 데이터
+    
 
     // data,
     // nextId: 10, //data.length로 하면 initialState의 객체속성의 배열이 나오기 때문에 오류나는 거임
@@ -53,10 +54,10 @@ export const diarySlice = createSlice({
         setEditData(state, action){
             state.editData = action.payload
         },
-        addDiary(state, action){
-            // action.payload = addText
-            state.data = [...state.data, {id:state.nextId++, updTime:null, comment:[], ...action.payload}]
-        },
+        // addDiary(state, action){
+        //     // action.payload = addText
+        //     state.data = [...state.data, {id:state.nextId++, updTime:null, comment:[], ...action.payload}]
+        // },
         // addData(state, action){
         //     state.data = [...state.data, {id:state.nextId++, updTime:null, comment:[], ...action.payload}]
         // },
@@ -78,5 +79,5 @@ export const diarySlice = createSlice({
     }
 })
 
-export const {maxNextId, addDiary, sendData, showDailyData, addData, delData, setEditData, updateData, sortData, delComData, addComData, putDiaryData} = diarySlice.actions
+export const { maxNextId, addDiary, sendData, showDailyData, addData, delData, setEditData, updateData, sortData, delComData, addComData, putDiaryData} = diarySlice.actions
 export default diarySlice.reducer

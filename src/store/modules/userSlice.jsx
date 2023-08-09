@@ -5,13 +5,17 @@ const initialState = {
     userData: JSON.parse(localStorage.getItem('userData')) || null,  //모두의 데이터
     logUser: {id: '', pw: ''},   //로그인 한 사람의 데이터
     user: localStorage.getItem('user') ? JSON.parse(localStorage.getItem('user')) : null,
-    relationData : [] // 일촌 배열
+    relationData : [], // 일촌 배열,
+    isOpen : false
 }
+
+let no = 1;
 
 export const userSlice = createSlice({
     name: 'user',
     initialState,
     reducers: { 
+        // 영은시작
         addDiary(state, action){
             state.user.userDiary = state.user.userDiary || []; 
             state.user.userDiary.push({...action.payload, updTime:null, comment:[]})
@@ -26,10 +30,10 @@ export const userSlice = createSlice({
             localStorage.setItem('userData', JSON.stringify(state.userData)) 
         },
         editDiary(state, action){ // 다이어리는 이미 주인장만 작성 가능 => id가 동일한 게시물 찾기 
-           state.user.userDiary = state.user.userDiary.map(item => item.id === action.payload.id ? action.payload : item)
-           state.userData = state.userData.map(item => item.emailID === state.user.emailID ? state.user : item)
-           localStorage.setItem('user', JSON.stringify(state.user)) 
-           localStorage.setItem('userData', JSON.stringify(state.userData)) 
+            state.user.userDiary = state.user.userDiary.map(item => item.id === action.payload.id ? action.payload : item)
+            state.userData = state.userData.map(item => item.emailID === state.user.emailID ? state.user : item)
+            localStorage.setItem('user', JSON.stringify(state.user)) 
+            localStorage.setItem('userData', JSON.stringify(state.userData)) 
         },
         addComDiary(state, action){
             const {userID, id, addText} = action.payload // 주인장ID, 게시물id, 댓글객체
@@ -42,7 +46,15 @@ export const userSlice = createSlice({
         delComDiary(state, action){
 
         },
-        // diary 끝
+        addMiniroom(state, action){
+            // 리셋 state.user.userMiniroom = [];    
+            // userMiniroom에 id가 일치하는 게 있으면 제외하고 추가해야한다
+            state.user.userMiniroom = state.user.userMiniroom || []            
+            state.user.userMiniroom.push(...action.payload) //스프레드연산자를 사용하지 않으면 구매버튼 누를 때마다 [{}] 형태로 생성된다.({}형태로만 들어가야한다.)
+            state.userData = state.userData.map(item => item.emailID === state.user.emailID ? state.user : item); 
+            localStorage.setItem('user', JSON.stringify(state.user)); 
+            localStorage.setItem('userData', JSON.stringify(state.userData));
+        },
         changeInput(state, action) {
             const { name, value } = action.payload;
             state.logUser = { ...state.logUser, [name]: value };
@@ -56,22 +68,9 @@ export const userSlice = createSlice({
         logout(state, action) {
             localStorage.removeItem('user');
         },
-        addSkin(state, action) {
-            state.user.userSkin = state.user.userSkin || [];
-            // user 객체에 userSkin이라는 배열이 없으면 [] 빈 배열로 생성
-            const idChk = state.user.userSkin.find(item => item.id === action.payload);
-            // 스킨 id가 서로 같은지 체크
-            if (!idChk) { // 스킨 id 중복 아닐 때 추가
-                state.user.userSkin.push( { id: action.payload, skinImg: `url(../images/skin/skin${action.payload}.jpg)` } ); }
-                // userSkin 안에 객체 타입으로 생성
-            
-            state.userData = state.userData.map(item => item.emailID === state.user.emailID ? state.user : item); // userData도 같이 업데이트
-            localStorage.setItem('user', JSON.stringify(state.user)); // user 로컬스토리지에 저장
-            localStorage.setItem('userData', JSON.stringify(state.userData)); // userData 로컬스토리지에 저장
-        },
         onSkin(state, action) {
             state.user.nowSkin = state.user.nowSkin || '';
-            state.user.nowSkin = `url(../images/skin/skin${action.payload}.jpg)`
+            state.user.nowSkin = state.user.userSkin.find(item => item.id === Number(action.payload)).imgURL;
 
             state.userData = state.userData.map(item => item.emailID === state.user.emailID ? state.user : item); // userData도 같이 업데이트
             localStorage.setItem('user', JSON.stringify(state.user)); // user 로컬스토리지에 저장
@@ -79,15 +78,44 @@ export const userSlice = createSlice({
         },
         onMiniroom(state, action) {
             state.user.nowMiniroom = state.user.nowMiniroom || '';
-            state.user.nowMiniroom = `url(../images/miniroom/miniroom${action.payload}.jpg)`
+            state.user.nowMiniroom = state.user.userMiniroom.find(item => item.id === Number(action.payload)).url;
 
+            state.userData = state.userData.map(item => item.emailID === state.user.emailID ? state.user : item); // userData도 같이 업데이트
+            localStorage.setItem('user', JSON.stringify(state.user)); // user 로컬스토리지에 저장
+            localStorage.setItem('userData', JSON.stringify(state.userData)); // userData 로컬스토리지에 저장
+        },
+        addMinimi(state, action) {
+            state.user.userMinimi = state.user.userMinimi || [];
+            // user 객체에 userMinimi이라는 배열이 없으면 [] 빈 배열로 생성
+            state.user.userMinimi.push( ...action.payload );
+            
+            state.userData = state.userData.map(item => item.emailID === state.user.emailID ? state.user : item); // userData도 같이 업데이트
+            localStorage.setItem('user', JSON.stringify(state.user)); // user 로컬스토리지에 저장
+            localStorage.setItem('userData', JSON.stringify(state.userData)); // userData 로컬스토리지에 저장
+        },
+        delMinimi(state, action) {
+            state.user.userMinimi = state.user.userMinimi.filter(item => item.id !== Number(action.payload));
+            // 선택 미니미만 삭제
+            state.user.nowMinimi = state.user.userMinimi.find(item => item.minimiURL === state.user.nowMinimi) ? state.user.nowMinimi : '';
+            // 현재 미니미 = 삭제된 미니미면 없애기, 있으면 그대로
+            sAlert('success', '미니미가 삭제되었습니다!')
+
+            state.userData = state.userData.map(item => item.emailID === state.user.emailID ? state.user : item); // userData도 같이 업데이트
+            localStorage.setItem('user', JSON.stringify(state.user)); // user 로컬스토리지에 저장
+            localStorage.setItem('userData', JSON.stringify(state.userData)); // userData 로컬스토리지에 저장
+        },
+        allDelMinimi(state, action) {
+            state.user.userMinimi = [];
+            state.user.nowMinimi = '';
+            sAlert('success', '미니미가 전체 삭제 되었습니다!')
             state.userData = state.userData.map(item => item.emailID === state.user.emailID ? state.user : item); // userData도 같이 업데이트
             localStorage.setItem('user', JSON.stringify(state.user)); // user 로컬스토리지에 저장
             localStorage.setItem('userData', JSON.stringify(state.userData)); // userData 로컬스토리지에 저장
         },
         onMinimi(state, action) {
             state.user.nowMinimi = state.user.nowMinimi || '';
-            state.user.nowMinimi = `url(../images/minimi/minimi${action.payload}.jpg)`
+            state.user.nowMinimi = state.user.userMinimi.find(item => item.id === Number(action.payload)).minimiURL;
+            sAlert('success', '미니미가 설정되었습니다!')
 
             state.userData = state.userData.map(item => item.emailID === state.user.emailID ? state.user : item); // userData도 같이 업데이트
             localStorage.setItem('user', JSON.stringify(state.user)); // user 로컬스토리지에 저장
@@ -95,7 +123,8 @@ export const userSlice = createSlice({
         },
         onBgm(state, action) {
             state.user.nowBgm = state.user.nowBgm || '';
-            state.user.nowBgm = `♬..${action.payload}.mp3`
+            const bgm = state.user.userBgm.find(item => item.id === Number(action.payload));
+            state.user.nowBgm = `♬..${bgm.singer} - ${bgm.title}.mp3`
 
             state.userData = state.userData.map(item => item.emailID === state.user.emailID ? state.user : item); // userData도 같이 업데이트
             localStorage.setItem('user', JSON.stringify(state.user)); // user 로컬스토리지에 저장
@@ -130,11 +159,13 @@ export const userSlice = createSlice({
             state.relationData = [
                 ...state.relationData,
                 {
+                    id : no++,
                     send : send,
                     arrive : arrive,
                     status : '대기중'
                 }
             ]
+          console.log(state.relationData)
         },
         addGuest(state, action){
             state.user.userGuest = state.user.userGuest || []; 
@@ -152,8 +183,23 @@ export const userSlice = createSlice({
             localStorage.setItem('user', JSON.stringify(state.user)) 
             localStorage.setItem('userData', JSON.stringify(state.userData))     
         },
+        trueOpen(state, action) {
+            state.isOpen = true
+        },
+        falseOpen(state, action) {
+            state.isOpen = false
+        },
+        declineRel(state, action) {
+            state.relationData = state.relationData.filter(item => item.id !== action.payload)
+            alert(`일촌신청을 거절했습니다.`)
+        },
+        acceptRel(state, action) {
+            state.relationData = state.relationData.map(item => item.id == action.payload ? {...item, status : '일촌' } : item)
+            alert('일촌신청을 수락했습니다')
+            console.log(state.relationData)
+        }
     }
 })
 
-export const { addDiary, delDiary, editDiary, addComDiary, delComDiary, changeInput, login, logout, addSkin, onSkin, onMiniroom, onMinimi, setTitle, setInfo, addFriendsSay, addRelationShip, addGuest, addBgm } = userSlice.actions
+export const { addDiary, delDiary, editDiary, addComDiary, delComDiary, changeInput, login, logout, addSkin, onSkin, addMiniroom, onMiniroom, addMinimi, onMinimi, delMinimi, allDelMinimi, setTitle, setInfo, addFriendsSay, addRelationShip, trueOpen, falseOpen, declineRel, acceptRel, addGuest, addBgm } = userSlice.actions
 export default userSlice.reducer
