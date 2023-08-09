@@ -1630,7 +1630,7 @@ position: relative;
             border: 1px solid #999;
             border-radius: 20px;
             background-color: #ffe06e;
-            background-image: url(../images/diary_upload.png);
+            background-image: url(./images/diary_upload.png);
             background-repeat: no-repeat;
             background-size: 25%;
             background-position: 40px 15px;
