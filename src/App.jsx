@@ -19,6 +19,8 @@ import GuestBook from './pages/GuestBook';
 import Jukebox from './pages/Jukebox';
 import Manager from './pages/Manager';
 import Minimi from './pages/Minimi';
+import ThemeMain from './pages/ThemeMain';
+
 
 const App = () => {
   return (
@@ -29,14 +31,13 @@ const App = () => {
             <Route index element={<Home />} />
             <Route path="/login" element={<Login />} />
             <Route path="/join" element={<Join />} />
-
-            <Route path="/dotori_store"  >
-              <Route index element={<DotoriStore />}/>
-              <Route path="bgm" element={<BgmStore />}/>
-              <Route path="theme" element={<Theme />}/>
-              <Route path="minimi" element={<Minimi />}/>
-            </Route>
+            <Route path="/dotori_store">
+            <Route index element={<DotoriStore />} />
+            <Route path="bgm" element={<BgmStore />} />
+            <Route path="themes" element={<Theme />} />
+            <Route path="minimi" element={<Minimi />} />
           </Route>
+        </Route>
               
           <Route path="/:userID" element={<MiniHome />}>
             <Route index element={<MiniMain />} />

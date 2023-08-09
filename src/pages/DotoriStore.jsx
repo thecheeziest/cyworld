@@ -21,11 +21,11 @@ const DotoriStore = () => {
             </div>
             <div className="go-theme">
                 <h3>ㄴH 人人┣ⓔ 꾸ㅁi7l</h3>
-                <Link to="theme"><button>테마샵 입장</button></Link>
+                <Link to="themes"><button>테마샵 입장</button></Link>
             </div>
             <div className="go-minimi">
                 <h3>ㄴH ヲH릭 꾸ㅁi7l</h3>
-                <Link to="theme"><button>미니미샵 입장</button></Link>
+                <Link to="minimi"><button>미니미샵 입장</button></Link>
             </div>
         </CyworldDotoriMain>
     );
