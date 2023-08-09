@@ -32,12 +32,12 @@ const Home_news = () => {
                 <strong className='mini-title'><Icon icon="clarity:cd-dvd-solid" /> BGM ▶</strong>
                 <table>
                     <tr>
-                        <td>다이어리 <span>0/{nowUser.userDiary ? `${ nowUser.userDiary.length - 1 }` : '0'}</span></td>
-                        <td>사진첩 <span>0/{nowUser.gallery ? `${ nowUser.gallery.length - 1 }` : '0'}</span></td>
+                        <td><Link to={`/${nowUser.emailID}/diary`}>다이어리 <span>0/{nowUser.userDiary ? `${ nowUser.userDiary.length - 1 }` : '0'}</span></Link></td>
+                        <td><Link to={`/${nowUser.emailID}/gallery`}>사진첩 <span>0/{nowUser.gallery ? `${ nowUser.gallery.length - 1 }` : '0'}</span></Link></td>
                     </tr>
                     <tr>
-                        <td>방명록 <span>0/{nowUser.userGuest ? `${ nowUser.userGuest.length - 1 }` : '0'}</span></td>
-                        <td>쥬크박스 <span>0/{nowUser.userBgm ? `${ nowUser.userBgm.length - 1 }` : '0'}</span></td>
+                        <td><Link to={`/${nowUser.emailID}/guest_book`}>방명록 <span>0/{nowUser.userGuest ? `${ nowUser.userGuest.length - 1 }` : '0'}</span></Link></td>
+                        <td><Link to={`/${nowUser.emailID}/jukebox`}>쥬크박스 <span>0/{nowUser.userBgm ? `${ nowUser.userBgm.length - 1 }` : '0'}</span></Link></td>
                     </tr>
                     <tr>
                         <td></td>

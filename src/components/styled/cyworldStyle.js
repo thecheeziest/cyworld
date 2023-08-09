@@ -1280,6 +1280,268 @@ export const CyworldMinimi = styled.div`
 
 
 // 영은 시작
+export const CyworldDotoriThemeMain = styled.div`
+    width: 100%;
+    .inner {
+        position: relative;
+        width: 1400px;
+        margin: auto;
+        background: #fff;
+    }
+    /* h3, 버튼 공통 */
+    h3 { text-align: center; font-size: 25px; }
+    button {
+        width: auto; height: 40px;
+        padding: 0 20px;
+        margin: 10px 5px 20px 0;
+        background: #fff;
+        border: 1px solid #000;
+        border-radius: 20px;
+        &:last-child { margin-right: 0; }
+    }
+    .visual {
+        img { width: 100%; }
+    }
+    .collection {
+        display: flex;
+        width: 100%;
+        height: 680px;
+        padding: 45px 170px ;
+        background: #ededed;
+        box-sizing: border-box;
+        .box {
+            height: 590px;
+            background: #fff;
+        }
+        .left-box { 
+            width: 330px; 
+            strong { font-size: 20px; font-weight:900; }
+            p { margin: 10px 0 30px; font-size: 18px; color:#999; }
+            span { 
+                display: inline-block;
+                width: auto;
+                height: 30px;
+                padding: 0 10px;
+                font-size: 14px;
+                line-height: 30px; 
+                border: 1.5px solid #000;
+                border-radius: 15px;
+                &:last-child { background-color:#000; color:#fff; margin-top:10px; display: table; }
+            }
+        }
+        .center-box { 
+            width: 420px; 
+            margin-right: 25px;
+        }
+        .right-box { 
+            width: 280px; 
+        }
+    }    
+    /* 핫, 뉴 공통 */
+    .prod-box {
+        margin: 60px 0;
+        .category { text-align: center; }
+        .swiper {
+            /* =swiper-miniroom */
+            .swiper-slide {
+                /* miniroom-item */
+            
+            }
+        }
+    }
+    .hot-prod {
+
+    }
+    .new-prod {
+
+    }
+`
+
+/* 도토리상점 theme 페이지 */
+export const CyworldDotoriThemePg = styled.div`
+    .inner {
+        position: relative;
+        width: 1400px;
+        margin: auto;
+        background: #fff;
+        /* 공통 */
+        button {
+            background: #fff;
+            border: none;
+        }
+        .sub-header {
+            position: relative;
+            display: flex; justify-content: space-between; align-items: center;
+            width: 100%;
+            height: 80px;
+            z-index: 1;
+            &.fixed {
+                position: fixed; top: 0;
+                width: 1400px;
+                background: #fff;
+            }
+            li, button {
+                margin-right: 20px;
+                font-family: 'SUITE-Bold';
+                font-size: 25px;
+                cursor: pointer;
+            }
+            ul {
+                display: flex;  
+            }
+            .all-menu {
+                display: flex;
+                button {
+                    &:last-child {margin-right: 0;}
+                }
+                span {
+                    position: absolute; top: 18px; right: 130px;
+                    width: 17px; height: 17px;
+                    background: #ff6600;
+                    border-radius: 50%;            
+                    opacity: 0.5;
+                }
+            }
+        }
+        .search-box {
+            width: 100%;
+            position: relative;
+            input {
+                position: absolute; top: 0; right: 0;
+                width: 290px;
+                text-indent: 5px;
+                font-size: 18px;
+                border: none;
+                border-bottom: 2px solid #36433b;            
+            }
+            button {.icon { position: absolute; top: 0; right: 0; font-size: 25px; }}
+        }
+        .prod-list {
+            width: 100%;
+            h3 {
+                margin-top: 50px;
+                font-family: 'SUITE-Bold';
+                font-size: 40px;
+                font-weight: 500;
+            }
+            .length { margin: 5px 0 15px; }
+            ul {    
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: space-between;
+                li {
+                    position: relative; 
+                    width: 320px;
+                    margin-bottom: 60px;
+                    &:hover {
+                        span {display: block;}
+                    }
+                    span {
+                        position: absolute; top: 0; left: 0;
+                        display: none;
+                        width: 100%; height: 210px;
+                        background: rgba(255, 255, 255, 0.8);
+                        cursor: pointer;
+                        button { background: transparent; }
+                        .iconify {
+                            position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+                            font-size: 110px; color: #fff;                        
+                        }
+                    }
+                    img { width: 100%; height: 210px; object-fit: cover;}  
+                    .text {
+                        padding-left: 5px;
+                        strong { display: block; font-size: 20px; }
+                        .dotori {
+                            display: flex;
+                            font-weight: 900; color: #e64808;
+                            .iconify { 
+                                font-size: 25px;
+                            }
+                            b { margin-right: 10px; color: #e64808; text-decoration: line-through; }
+                        }
+                    } 
+                }
+            }
+        }    
+        /* 팝업시작 */ 
+        .cart-modal {
+            position: fixed; top: 200px; left: 1200px;            
+            width: 500px; height: 700px;             
+            padding: 50px 50px 0;
+            box-sizing: border-box;
+            background: #fff;
+            border: 5px solid #ff6600;
+            z-index: 1;
+            .btn-wrap {
+                display: flex;
+                justify-content: space-between;
+                button {
+                    
+                    background: #fff;
+                    border: 2px solid #ff6600;
+                    border-radius: 15px;
+
+                    font-size: 18px;
+                    width: 180px;
+                    
+                    height: 50px;
+                    &:hover {
+                        background: #ff6600;
+                        color: #fff;
+                    }                  
+                }
+            }
+            h4 {
+                    text-align: center;
+                    font-size: 25px;
+                    font-weight: 900;
+                    letter-spacing: 1px;
+            }
+            .cart-list {
+                height: 450px;
+                margin: 30px 0 20px;
+                overflow-x: hidden;
+                overflow-y: auto;
+                p { // 장바구니가 비어있습니다.
+                    margin-top: 40px;
+                    font-size: 19px;                    
+                    text-align: center;
+                }
+                .cart-item {
+                    display: flex; justify-content: space-around; align-items: center;
+                    width: 100%; height: 70px;
+                    margin-bottom: 20px;
+                    img {
+                        width: 70px; height: 70px;
+                        border-radius: 50%;
+                        object-fit:cover;
+                    }
+                    strong { font-size: 20px; }
+                    .dotori { 
+                        margin: 0;
+                        .iconify {font-size: 30px; vertical-align: sub;}
+                    }
+                    button { 
+                        border: none; 
+                        line-height:70px; 
+                        .icon {font-size:23px; vertical-align: sub; }
+                    }
+                }
+            }
+        }
+        .cart-modal:after, .cart-modal:before {
+            content: "";
+            position: absolute; left: 50%; bottom: 100%;
+            width: 0; height: 0;
+            border: solid transparent;
+            pointer-events: none;
+        }
+        .cart-modal:after { margin-left: -30px; border-color: rgba(255, 255, 255, 0); border-bottom-color: #fff; border-width: 30px; }
+        .cart-modal:before { margin-left: -37px; border-color: rgba(255, 102, 0, 0); border-bottom-color: #ff6600; border-width: 37px; }
+    }
+`
+    
 // CyworldDiaryPg 
 export const CyworldDiaryPg = styled.div`
 width: 758px;

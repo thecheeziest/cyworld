@@ -12,6 +12,7 @@ export const userSlice = createSlice({
     name: 'user',
     initialState,
     reducers: { 
+        // 영은시작
         addDiary(state, action){
             state.user.userDiary = state.user.userDiary || []; 
             state.user.userDiary.push({...action.payload, updTime:null, comment:[]})
@@ -42,7 +43,15 @@ export const userSlice = createSlice({
         delComDiary(state, action){
 
         },
-        // diary 끝
+        addMiniroom(state, action){
+            // 리셋 state.user.userMiniroom = [];    
+            // userMiniroom에 id가 일치하는 게 있으면 제외하고 추가해야한다
+            state.user.userMiniroom = state.user.userMiniroom || []            
+            state.user.userMiniroom.push(...action.payload) //스프레드연산자를 사용하지 않으면 구매버튼 누를 때마다 [{}] 형태로 생성된다.({}형태로만 들어가야한다.)
+            state.userData = state.userData.map(item => item.emailID === state.user.emailID ? state.user : item); 
+            localStorage.setItem('user', JSON.stringify(state.user)); 
+            localStorage.setItem('userData', JSON.stringify(state.userData));
+        },
         changeInput(state, action) {
             const { name, value } = action.payload;
             state.logUser = { ...state.logUser, [name]: value };
@@ -56,19 +65,6 @@ export const userSlice = createSlice({
         logout(state, action) {
             localStorage.removeItem('user');
         },
-        // addSkin(state, action) {
-        //     state.user.userSkin = state.user.userSkin || [];
-        //     // user 객체에 userSkin이라는 배열이 없으면 [] 빈 배열로 생성
-        //     const idChk = state.user.userSkin.find(item => item.id === action.payload);
-        //     // 스킨 id가 서로 같은지 체크
-        //     if (!idChk) { // 스킨 id 중복 아닐 때 추가
-        //         state.user.userSkin.push( { id: action.payload, skinImg: `url(../images/skin/skin${action.payload}.jpg)` } ); }
-        //         // userSkin 안에 객체 타입으로 생성
-            
-        //     state.userData = state.userData.map(item => item.emailID === state.user.emailID ? state.user : item); // userData도 같이 업데이트
-        //     localStorage.setItem('user', JSON.stringify(state.user)); // user 로컬스토리지에 저장
-        //     localStorage.setItem('userData', JSON.stringify(state.userData)); // userData 로컬스토리지에 저장
-        // },
         onSkin(state, action) {
             state.user.nowSkin = state.user.nowSkin || '';
             state.user.nowSkin = state.user.userSkin.find(item => item.id === Number(action.payload)).imgURL;
@@ -109,7 +105,6 @@ export const userSlice = createSlice({
             state.user.userMinimi = [];
             state.user.nowMinimi = '';
             sAlert('success', '미니미가 전체 삭제 되었습니다!')
-
             state.userData = state.userData.map(item => item.emailID === state.user.emailID ? state.user : item); // userData도 같이 업데이트
             localStorage.setItem('user', JSON.stringify(state.user)); // user 로컬스토리지에 저장
             localStorage.setItem('userData', JSON.stringify(state.userData)); // userData 로컬스토리지에 저장
@@ -170,5 +165,5 @@ export const userSlice = createSlice({
     }
 })
 
-export const { addDiary, delDiary, editDiary, addComDiary, delComDiary, changeInput, login, logout, onSkin, onMiniroom, onMinimi, addMinimi, delMinimi, allDelMinimi, setTitle, setInfo, addFriendsSay, addRelationShip } = userSlice.actions
+export const { addDiary, delDiary, editDiary, addComDiary, delComDiary, changeInput, login, logout, onSkin, addMiniroom, onMiniroom, onMinimi, addMinimi, delMinimi, allDelMinimi, setTitle, setInfo, addFriendsSay, addRelationShip } = userSlice.actions
 export default userSlice.reducer
