@@ -5,8 +5,11 @@ const initialState = {
     userData: JSON.parse(localStorage.getItem('userData')) || null,  //모두의 데이터
     logUser: {id: '', pw: ''},   //로그인 한 사람의 데이터
     user: localStorage.getItem('user') ? JSON.parse(localStorage.getItem('user')) : null,
-    relationData : [] // 일촌 배열
+    relationData : [], // 일촌 배열,
+    isOpen : false
 }
+
+let no = 1;
 
 export const userSlice = createSlice({
     name: 'user',
@@ -130,14 +133,32 @@ export const userSlice = createSlice({
             state.relationData = [
                 ...state.relationData,
                 {
+                    id : no++,
                     send : send,
                     arrive : arrive,
                     status : '대기중'
                 }
             ]
+            console.log(state.relationData)
+        },
+        trueOpen(state, action) {
+            state.isOpen = true
+        },
+        falseOpen(state, action) {
+            state.isOpen = false
+        },
+        declineRel(state, action) {
+            state.relationData = state.relationData.filter(item => item.id !== action.payload)
+            alert(`일촌신청을 거절했습니다.`)
+        },
+        acceptRel(state, action) {
+            state.relationData = state.relationData.map(item => item.id == action.payload ? {...item, status : '일촌' } : item)
+            alert('일촌신청을 수락했습니다')
+            console.log(state.relationData)
         }
     }
 })
 
-export const { addDiary, delDiary, editDiary, addComDiary, delComDiary, changeInput, login, logout, addSkin, onSkin, onMiniroom, onMinimi, setTitle, setInfo, addFriendsSay, addRelationShip } = userSlice.actions
+export const { addDiary, delDiary, editDiary, addComDiary, delComDiary, changeInput, login, logout, addSkin, onSkin, onMiniroom, onMinimi, setTitle, setInfo, addFriendsSay, 
+    addRelationShip, trueOpen, falseOpen, declineRel, acceptRel } = userSlice.actions
 export default userSlice.reducer

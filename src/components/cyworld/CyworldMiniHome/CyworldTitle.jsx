@@ -1,12 +1,13 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useParams } from 'react-router-dom';
 import { changeInput, onTitle } from '../../../store/modules/cyworldSlice';
-import { setTitle } from '../../../store/modules/userSlice';
+import { falseOpen, setTitle, trueOpen } from '../../../store/modules/userSlice';
 import { AiOutlineMail } from 'react-icons/ai'
+import CyworldModal from './CyworldModal';
 
 const CyworldTitle = () => {
-    const { user, userData } = useSelector(state => state.user);
+    const { user, userData, isOpen, relationData } = useSelector(state => state.user);
     const { userID } = useParams();
     const nowUser = userData.find(item => item.emailID === userID);
     // 도메인에 맞는 데이터 출력
@@ -19,7 +20,7 @@ const CyworldTitle = () => {
         dispatch(setTitle(text));
     }
     const relationList = () => {
-        
+        dispatch(dispatch(trueOpen()))
     }
 
     return (
@@ -35,10 +36,12 @@ const CyworldTitle = () => {
                     }
                     </h2></Link>
             }
-            <button onClick={relationList}><AiOutlineMail /></button>
             {
                 user.emailID === userID && // 미니홈피 주인일 때만 노출
                 <button className='edit' onClick={editTitle}>{isTitle ? 'SAVE' : 'EDIT'}</button>
+            }
+            {
+                user.emailID === userID && <button onClick={relationList}><AiOutlineMail /></button>
             }
         </div>
     );

@@ -621,9 +621,11 @@ margin: auto;
     .home-title {
         display: flex;
         padding: 0 30px;
-        justify-content: space-between;
         align-items: end;
+        position: relative;
         button {
+            position: absolute;
+            right: 20px;
             width: 40px;
             height: 25px;
             font-size: 15px;
@@ -634,6 +636,9 @@ margin: auto;
             border: none;
             letter-spacing: 0;
             margin-right: 10px;
+        }
+        .edit {
+            right: 80px;
         }
     }
     h2 {
@@ -659,6 +664,7 @@ margin: auto;
         margin-right: 23px;
         padding: 15px;
         box-sizing: border-box;
+        overflow: scroll;
         .content {
             border: 1px solid #E6E6E6;
             overflow: auto;

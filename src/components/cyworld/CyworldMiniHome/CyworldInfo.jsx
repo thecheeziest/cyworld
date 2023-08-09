@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Icon } from '@iconify/react';
 import { CyworldInfoContainer } from '../../styled/cyworldStyle';
 import { useDispatch, useSelector } from 'react-redux';
@@ -10,27 +10,65 @@ const CyworldInfo = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const { text, isInfo } = useSelector(state => state.cyworld);
-    const { user, userData c} = useSelector(state => state.user);
-
+    const { user, userData, relationData } = useSelector(state => state.user);
+    const [data, setData] = useState(relationData)
+    const [isShow , setIsShow] = useState(true)
     const { userID } = useParams();
     const nowUser = userData.find(item => item.emailID === userID);
     // 도메인에 맞는 데이터 출력
     const { name, email } = nowUser;
     const relData = { send : '', arrive : '' }
+    const [friend , setFriend] = useState(relationData.filter(item => item.status == '일촌'))
+    let sendUser = friend.find(item => item.send == user.name && item.arrive == nowUser.name)
+    let arriveUser = friend.find(item => item.arrive == user.name && item.send == nowUser.name)
 
     const editInfo = () => {
         dispatch(onInfo());
         dispatch(setInfo(text));
     }
-
+    // localStorage.clear()
     const goHP = e => {
         navigate(`/${e.target.value}`);
     }
     const relationship = () => { // 일촌 배열에 송신자 수신자 상태 정보입력 (오류해결)
         relData.send = user.name
         relData.arrive = nowUser.name
+        setIsShow(false)
+        alert(`${nowUser.name}님에게 일촌신청을 보냈습니다!`)
         dispatch(addRelationShip(relData))
     }
+
+    useEffect( () => {
+        setIsShow(true)
+        setData(relationData.filter(item => item.status == '대기중'))
+        setFriend(relationData.filter(item => item.status == '일촌'))
+        sendUser = friend.find(item => item.send == user.name && item.arrive == nowUser.name)
+        arriveUser = friend.find(item => item.arrive == user.name && item.send == nowUser.name)
+        data.forEach(item => {
+            if(item.send == user.name) {
+                if(item.arrive == nowUser.name) {
+                    setIsShow(false)
+                } else {
+                    setIsShow(true)
+                }
+            }
+        })
+        if(sendUser) {
+            if(sendUser.send == user.name && sendUser.arrive == nowUser.name) {
+                setIsShow(false)
+                console.log(isShow)
+            } else {
+                setIsShow(true)
+            }
+        } else if(arriveUser) {
+            if (arriveUser.arrive == user.name  && arriveUser.send == nowUser.name) {
+                setIsShow(false)
+                console.log(isShow)
+            }else {
+                setIsShow(true)
+            }
+        }
+    },[userID])
 
     return (
         <CyworldInfoContainer className='pro-inner'>
@@ -76,7 +114,7 @@ const CyworldInfo = () => {
             <div className="name">
                 <p>{name}</p>
                 <Icon icon="ant-design:woman-outlined" />
-                {user.emailID !== userID && <button onClick={relationship}>일촌신청</button>}
+                {user.emailID !== userID && isShow && <button onClick={relationship}>일촌신청</button>}
             </div>
             <em className='mail'>{email}</em>
             <div className="surfing">
