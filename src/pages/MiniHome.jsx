@@ -18,7 +18,7 @@ const MiniHome = () => {
     // 도메인에 맞는 데이터 출력
     
     useEffect(() => {
-        // navigate(`/${userID}`); // 새로고침 될 때마다 미니홈피 홈 화면으로
+        // navigate(`/${userID}`); // 새로고침 될 때마다 미니홈피 홈 화면으로 -> 이거 안 하면 도토리 스토어에 있다가 미니홈피로 바로 와졌을 때 메뉴 탭이 설정 페이지인데도 홈으로 되어 있음
         localStorage.setItem('user', JSON.stringify(user));
         // user 데이터가 변경될 때마다 로컬 스토리지에 저장
         
