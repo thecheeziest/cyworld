@@ -6,6 +6,7 @@ import music from "./modules/musicBoxSlice";
 import diary from "./modules/diarySlice";
 import profile from "./modules/profileSlice";
 import guest from "./modules/guestSlice";
+import minimi from "./modules/minimiSlice";
 
 export const store = configureStore({
     reducer: {
@@ -15,6 +16,7 @@ export const store = configureStore({
       music,
       diary,
       profile,
-      guest
+      guest,
+      minimi
     }
 });
