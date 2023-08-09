@@ -1,6 +1,3 @@
-import { GrCart } from 'react-icons/Gr';
-import { AiOutlineHeart } from 'react-icons/Ai';
-import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { addCarts } from '../../../store/modules/dotoriThemeSlice';
 import { Icon } from '@iconify/react';

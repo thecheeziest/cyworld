@@ -24,6 +24,12 @@ const MiniHome = () => {
         
     }, [user]);
 
+    useEffect( () => {
+        setData(relationData.filter(item => item.status == '일촌'))
+        sendUser = data.find(item => item.send == user.name && item.arrive == nowUser.name)
+        arriveUser = data.find(item => item.arrive == user.name && item.send == nowUser.name)
+    },[isOpen]);
+
     const onLogout = () => {
         dispatch(logout());
         navigate('/login');

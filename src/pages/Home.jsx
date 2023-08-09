@@ -40,8 +40,10 @@ const Home = () => {
                         </div>
                         :
                         <div className="btn">
-                            <Link to="/login"><button className='login'>로그인</button></Link>
-                            <Link to="/join"><button className='join'>회원가입</button></Link>
+                            <p>
+                                <Link to="/login"><button className='login'>로그인</button></Link>
+                                <Link to="/join"><button className='join'>회원가입</button></Link>
+                            </p>
                         </div>
                     }
                 </div>

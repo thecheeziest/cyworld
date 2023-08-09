@@ -16,16 +16,17 @@ const CyItem = styled.ul`
     }
 `
 
-const CyworldModalItem = () => {
+const CyworldModalItem = () => {    
     const { user, relationData, userData } = useSelector(state => state.user)
     const { userID } = useParams();
     const nowUser = userData.find(item => item.emailID === userID);
     const [data, setData] = useState(relationData)
     const [relList, setRelList] = useState([])
     const dispatch = useDispatch()
+
     useEffect( () => {
-        setData(data.filter(item => item.arrive === user.name && item.send === nowUser.name))
-        setRelList(data.filter(item => item.status === '대기중'))
+        const newData = relationData.filter(item => item.arrive == user.name)
+        setRelList(newData.filter(item => item.status === '대기중'))
     },[user])
 
     const refresh = () => {

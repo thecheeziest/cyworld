@@ -13,6 +13,7 @@ const MiniMain = () => {
     const { userID } = useParams();
     const nowUser = userData.find(item => item.emailID === userID);
     // 도메인에 맞는 데이터 출력
+
     
     return (
         <CyworldHPContainer>
@@ -27,7 +28,7 @@ const MiniMain = () => {
                         <Home_news />
                         <div className="mini-room">
                             <strong className='mini-title'>Mini Room</strong>
-                            <div className="room-img" style={{ backgroundImage: nowUser.nowMiniroom ? nowUser.nowMiniroom : 'url(../images/miniroom/miniroom1.gif)' }}></div>
+                            <div className="room-img" style={{ backgroundImage: nowUser.nowMiniroom ? `url(.${nowUser.nowMiniroom})` : 'url(../images/miniroom/miniroom1.gif)' }}></div>
                         </div>
                         <Home_comment />
                     </div>
