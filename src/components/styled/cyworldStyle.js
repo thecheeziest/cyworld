@@ -76,7 +76,9 @@ background-position: 0 0;
         justify-content: space-around;
         height: 100%;
         margin: auto;
-        .login { margin: 0 }
+        .login {
+            margin: 0;
+        }
         .btn {
             width: 750px;
             p {
@@ -1155,11 +1157,10 @@ export const CyworldCart = styled.div`
     border: 1px solid #FF6600;
     &:hover { background: #ffccaa; border: 1px solid #FFF; p { color: #FF6600; }}
     p { font-size: 25px; font-weight: 600; color: #FFF;  }
-=======
     p { font-size: 25px; font-weight: 600; color: #FFF;
         /* margin-left: 100px; */
         margin: auto;
-        /* 초롱 margin-left: 55px; */
+        &.music { margin-left: 55px; }
     }
     img { margin-right: 20px; height: 70px; }
     .cartCnt {
@@ -1235,7 +1236,7 @@ export const CyworldCart = styled.div`
         b { color: #FF6600; }
     }
     .cart-save {
-        cursor: pointer;
+        cursor: pointer  !important;
         display: block;
         width: 250px; height: 50px;
         margin: 20px auto;

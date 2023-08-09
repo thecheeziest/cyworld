@@ -16,7 +16,7 @@ const Manager_minimi = () => {
     return (
         <CyworldSetting>
             {
-                nowUser && nowUser.userMinimi.length > 0 ?
+                nowUser && nowUser.userMinimi ?
                 <>
                 <p className='set'>
                     <strong>보유 중인 미니미</strong>

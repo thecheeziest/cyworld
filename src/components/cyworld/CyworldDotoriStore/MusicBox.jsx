@@ -41,7 +41,7 @@ const MusicBox = ({ item }) => {
                     <CyworldCart>
                     <button className='cartBtn' onClick={toggleBasket}>
                         <div className='cartCnt'>{cart.length}</div>
-                        <p>장바구니</p>
+                        <p className='music'>장바구니</p>
                         <img src="./images/dotoristore/music_cart_btn.gif" alt="" />
                     </button>
                     <div className={`basketList ${isBasketVisible ? '' : 'open'}`}>
