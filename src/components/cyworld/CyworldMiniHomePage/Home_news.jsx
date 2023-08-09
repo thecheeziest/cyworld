@@ -22,10 +22,10 @@ const Home_news = () => {
                 <p><span>{nowUser.gallery ? `${nowUser.gallery[nowUser.gallery.length - 1].date} 일자 업로드 사진` : '등록된 사진이 없습니다.'}</span></p>
                 </Link>
                 <Link to={`/${nowUser.emailID}/guest_book`}>
-                <p><span>{nowUser.userGuest ? `${nowUser.userGuest[nowUser.userGuest.length - 1].substance}` : '등록된 방명록이 없습니다.'}</span></p>
+                <p><span>{nowUser.userGuest ? `${nowUser.userGuest[nowUser.userGuest.length - 1].message}` : '등록된 방명록이 없습니다.'}</span></p>
                 </Link>
                 <Link to={`/${nowUser.emailID}/jukebox`}>
-                <p><span>{nowUser.userBgm ? `${nowUser.userBgm[nowUser.userBgm.length - 1].substance}` : '설정된 배경음악이 없습니다.'}</span></p>
+                <p><span>{nowUser.userBgm ? `${nowUser.userBgm[nowUser.userBgm.length - 1].singer} - ${nowUser.userBgm[nowUser.userBgm.length - 1].title}` : '설정된 배경음악이 없습니다.'}</span></p>
                 </Link>
             </div>
             <div className="new">
