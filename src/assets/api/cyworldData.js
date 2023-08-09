@@ -23,4 +23,25 @@ const userList = [
     {id: 5, name: '변서은', email: 'hotpink@naver.com', emailID: 'hotpink', emailDomain: 'naver.com', pw: '0303', pwChk: '0303', gender: 'female', birth: '2023-03-03'}
 ];
 
-export { menuData, setData, userList };
+const minimiList = [
+    {id: 1, minimiURL: './images/minimi/minimi1.gif'},
+    {id: 2, minimiURL: './images/minimi/minimi2.gif'},
+    {id: 3, minimiURL: './images/minimi/minimi3.gif'},
+    {id: 4, minimiURL: './images/minimi/minimi4.gif'},
+    {id: 5, minimiURL: './images/minimi/minimi5.gif'},
+    {id: 6, minimiURL: './images/minimi/minimi6.gif'},
+    {id: 7, minimiURL: './images/minimi/minimi7.gif'},
+    {id: 8, minimiURL: './images/minimi/minimi8.gif'},
+    {id: 9, minimiURL: './images/minimi/minimi9.gif'},
+    {id: 10, minimiURL: './images/minimi/minimi10.gif'},
+    {id: 11, minimiURL: './images/minimi/minimi11.gif'},
+    {id: 12, minimiURL: './images/minimi/minimi12.gif'},
+    {id: 13, minimiURL: './images/minimi/minimi13.gif'},
+    {id: 14, minimiURL: './images/minimi/minimi14.gif'},
+    {id: 15, minimiURL: './images/minimi/minimi15.gif'},
+    {id: 16, minimiURL: './images/minimi/minimi16.gif'},
+    {id: 17, minimiURL: './images/minimi/minimi17.gif'},
+    {id: 18, minimiURL: './images/minimi/minimi18.gif'}
+]
+
+export { menuData, setData, userList, minimiList };

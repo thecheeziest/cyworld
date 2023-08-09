@@ -7,6 +7,7 @@ import diary from "./modules/diarySlice";
 import profile from "./modules/profileSlice";
 import guest from "./modules/guestSlice";
 import theme from "./modules/dotoriThemeSlice"
+import minimi from "./modules/minimiSlice";
 
 export const store = configureStore({
     reducer: {
@@ -17,6 +18,7 @@ export const store = configureStore({
       diary,
       profile,
       guest,
-      theme
+      theme,
+      minimi
     }
 });

@@ -79,8 +79,11 @@ background-position: 0 0;
         .login { margin: 0 }
         .btn {
             width: 750px;
-            display: flex;
-            justify-content: space-between;
+            p {
+                display: flex;
+                justify-content: space-between;
+                margin-top: 50px;
+            }
             button {
                 width: 350px;
                 height: 300px;
@@ -113,9 +116,16 @@ background-position: 0 0;
                     &:hover { background-image: url(./images/login_bg_hover.jpg); }
                 }
                 &.logout {
-                    background-image: url(./images/logout_bg.jpg);
+                    display: block;
+                    margin: 50px auto 0;
+                    width: 600px; height: 70px;
+                    padding: 0;
                     &:hover { background-image: url(./images/logout_bg_hover.jpg); }
                 }
+                &.go-store {
+                    background-image: url(./images/go_dotori.jpg);
+                    &:hover { background-image: url(./images/go_dotori_hover.jpg); }
+                    }
             }
         }
     }
@@ -579,6 +589,7 @@ margin: auto;
                 text-indent: 15px;
                 font-size: 18px;
                 position: relative;
+                color: #626262;
                 span {
                     color: #626262;
                     font-family: 'NeoDunggeunmoPro-Regular';
@@ -1017,13 +1028,22 @@ strong {
     display: flex;
     justify-content: space-between;
     margin: 20px 25px;
-    button { width: 70px; background: #f4f4f4; border: 1px solid #bababa; &:hover { background: #FF6600; color: #FFF; } }
+    button { width: 80px; background: #f4f4f4; border: 1px solid #bababa; &:hover { background: #FF6600; color: #FFF; } &:first-child { margin-right: 10px; } }
+    &.del {
+        justify-content: right;
+    }
 }
 .set-home {
     padding: 0 15px;
     justify-content: space-between;
     flex-wrap: wrap;
     display: flex;
+    &.minimi {
+        label {
+            width: 220px; height: 200px;
+            background-size: auto 150px;
+        }
+    }
     p {
         position: relative;
         margin-bottom: 30px;
@@ -1062,6 +1082,35 @@ strong {
             top: 10%; left: 5%;
         }
     }
+    &.bgmList {
+        display: block;
+        label {
+            width: 100%;
+            height: 50px;
+            border-radius: 0;
+            border-left: none;
+            border-right: none;
+            text-indent: 77px;
+            line-height: 50px;
+            &:hover {
+                &::after {
+                    content: "Click!";
+                    display: block;
+                    line-height: 50px;
+                    background: #FFF;
+                    opacity: 0.8;
+                    text-align: center;
+                    color: #FF6600;
+                    font-size: 20px;
+                    letter-spacing: 1px;
+                }
+            }
+        }
+        input {
+            top: 50%;
+            transform: translateY(-50%);
+        }
+    }
 }
 `
 
@@ -1080,7 +1129,10 @@ export const CyworldCart = styled.div`
     align-items: center;
     border: 1px solid #FF6600;
     &:hover { background: #ffccaa; border: 1px solid #FFF; p { color: #FF6600; }}
-    p { font-size: 25px; font-weight: 600; color: #FFF; margin-left: 100px; }
+    p { font-size: 25px; font-weight: 600; color: #FFF;
+        /* margin-left: 100px; */
+        margin: auto;
+    }
     img { margin-right: 20px; height: 70px; }
 }
 .basketList {
@@ -1102,15 +1154,126 @@ export const CyworldCart = styled.div`
         .w9 {width:20%}
         .w10 {width:15%}
         .w11 {width:10%}
-        tr:last-child td {border-bottom:1px solid #000}
+        tr:last-child td {border-bottom:1px solid #FF6600}
         th , td { border-bottom: 1px solid #DCDCDC; vertical-align: middle; text-align: center;}
         th { border-top: 1px solid #000 ; height:50px }
-        td { padding:5px ; }
+        td {
+            padding: 20px 0;
+            img { height: 100px; }
+        }
     }
     svg { cursor: pointer; }
-    .cart-save { cursor: pointer; }
+}
+.minimi {
+    button {
+        border: none;
+        background: #FF6600;
+        color: #FFF;
+        font-family: 'Galmuri9';
+        &:hover {
+            background: #ffccaa;
+            color: #FF6600;
+        }
+    }
+    h3 {
+        text-align: center;
+        margin: 30px 0;
+    }
+    table {
+        margin: 30px auto;
+        tbody {
+            border-top: 1px solid #FF6600;
+            button {
+                width: 70px; height: 40px;
+            }
+        }
+    }
+    .cnt {
+        text-align: center;
+        font-size: 20px;
+        b { color: #FF6600; }
+    }
+    .cart-save {
+        cursor: pointer;
+        display: block;
+        width: 250px; height: 50px;
+        margin: 20px auto;
+        font-size: 20px;
+    }
+    .go-minihp {
+        width: 250px; height: 50px;
+        font-size: 20px;
+    }
+    .BasketEmpty, .BasketMessage {
+        border-top: 1px dotted #DCDCDC;
+        border-bottom: 1px dotted #DCDCDC;
+        padding: 50px 0;
+        text-align: center;
+        font-size: 18px;
+        button {
+            width: 250px; height: 50px;
+            margin: 20px 0;
+        }
+    }
+    .BasketMessage {
+        display: none;
+        &.on { display: block; }
+    }
 }
 `
+
+// CyworldMinimi
+export const CyworldMinimi = styled.div`
+.inner {
+    padding: 150px 0;
+    width: 900px;
+    margin: auto;
+    h3 {
+        font-size: 35px;
+        margin-bottom: 10px;
+    }
+    strong {
+        color: #FF6600;
+    }
+    ul {
+        border-top: 1px dotted #dcdcdc;
+        margin-top: 20px;
+        padding-top: 50px;
+        box-sizing: border-box;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        li {
+            width: 270px;
+            height: 270px;
+            margin-bottom: 50px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: center;
+            border: 1px solid #dcdcdc;
+            box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+            padding-top: 30px;
+            box-sizing: border-box;
+            .minimi-pic {
+                width: 100%;
+                height: 150px;
+                background-repeat: no-repeat;
+                background-size: contain;
+                background-position: 50%;
+            }
+            .add {
+                width: 100%; height: 48px;
+                background: #FF6600;
+                border: none;
+                p { color: #FFF; }
+                &:hover { background: #ffccaa; p {color: #FF6600;} }
+            }
+        }
+    }
+}
+`
+
 // 현아 끝
 
 

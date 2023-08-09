@@ -45,7 +45,7 @@ const Guest_Text = () => {
       <div className='GuestText'>
         <p>No {guestList.length + 1} {user.emailID} ({date})</p>
         <div className='GuestWrit'>
-          <img src='https://via.placeholder.com/200x200' alt='' />
+          <img src={user.nowMinimi ? user.nowMinimi : 'https://via.placeholder.com/200x200'} alt='' />
           <textarea
             name=''
             id=''
