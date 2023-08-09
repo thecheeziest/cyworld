@@ -14,7 +14,7 @@ const Jukebox_history = () => {
 
     const { user } = useSelector(state => state.user);
     const {userID} = useParams() //주인장의 id
-
+    
     useEffect(() => {
         const savedMusicHistory = JSON.parse(localStorage.getItem('musicHistory'));
         if (savedMusicHistory) {

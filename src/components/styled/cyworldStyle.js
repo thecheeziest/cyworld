@@ -1816,7 +1816,7 @@ export const MusicBoxContainer= styled.div `
             color: #fff;
             border-radius: 10px;
             border: 1px solid;
-            margin-left: 189px;
+            margin-left: 199px;
         }
     .BasketMessage {
       h2{

@@ -3,6 +3,7 @@ import { Icon } from '@iconify/react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useNavigate, useParams } from 'react-router-dom';
 import { addCart, removeCart, resetCart, totalCart } from '../../../store/modules/musicBoxSlice';
+import { addBgm } from '../../../store/modules/userSlice';
 
 
 const MusicBasket = ({item}) => {
@@ -29,6 +30,7 @@ const MusicBasket = ({item}) => {
 
             // 카트 상태를 리셋하는 액션을 디스패치
             dispatch(resetCart());
+            dispatch(addBgm(cart))
 
            // 음악 히스토리 업데이트
            const updatedMusicHistory = [...musicHistory, ...cart];
@@ -90,7 +92,7 @@ const MusicBasket = ({item}) => {
                   <h2>음악 바구니가 비어있습니다. 음악을 담아주세요!</h2>
                 </div>
               )}
-              <button className='BasketBtn' onClick={onGo}>배경음악 설정하기</button>
+              <button className='BasketBtn' onClick={onGo}>미니홈피 가기</button>
               {addedToBasket && (
                   <div className='BasketMessage'>
                     <h2>담기 성공!</h2>
