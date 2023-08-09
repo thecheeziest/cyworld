@@ -27,7 +27,7 @@ const Guest_Writ = () => {
         <div className='GuestText_Wr'>
         <p>No {no} {user.emailID} ({date})</p>
             <div className='GuestWrit_Wr'>
-            <img src="https://via.placeholder.com/200x200" alt="" />
+            <img src={user.nowMinimi ? user.nowMinimi : 'https://via.placeholder.com/200x200'} alt='미니미' />
                     <textarea name="" id="" cols="70" rows="10" placeholder='친구에게 방명록을 남겨주세요.'></textarea>
                     {user.emailID !== userID ? (
                         <button onClick={GuestClick}>저장</button>

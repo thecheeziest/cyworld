@@ -32,6 +32,10 @@ const Manager_skin = () => {
                         </p>)
                     }
                 </div>
+                <p className='set del'>
+                    <button>선택 삭제</button>
+                    <button>전체 삭제</button>
+                </p>
                 </>
                 :
                 <p className='none'>보유 중인 스킨이 없습니다.</p>
