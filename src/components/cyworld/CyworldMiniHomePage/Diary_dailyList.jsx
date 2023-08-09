@@ -2,6 +2,7 @@ import { useSelector } from 'react-redux';
 import Diary_dailyItem from './Diary_dailyItem';
 import { Link, useNavigate, useParams } from 'react-router-dom';
 import { Icon } from '@iconify/react';
+import sAlert from '../../../assets/sweetalert/sweetalert';
 
 const Diary_dailyList = () => { 
     const navigate = useNavigate()
@@ -9,7 +10,7 @@ const Diary_dailyList = () => {
     const { userID } = useParams();    
     const {dailyData} = useSelector(state => state.diary)
     const num = dailyData.length
-    const onGo = () => userID === user.emailID ? navigate(`/${user.emailID}/diary/add`) : alert('☆。˚＊。글쓰기는 주인장만 ㄱ߅능㉭ㅐ요. 댓글을 ○l용㉭ㅐ주세요˚＊。˚☆ ')
+    const onGo = () => userID === user.emailID ? navigate(`/${user.emailID}/diary/add`) : sAlert('error', '☆。˚＊。글쓰기는 주인장만 ㄱ߅능㉭ㅐ요................... 댓글을 ○l용㉭ㅐ주세요˚＊。˚☆ ')
 
     return (    
         <>

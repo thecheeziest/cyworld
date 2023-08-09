@@ -18,7 +18,56 @@ const initialState = {
         {id: 2, name: '이초롱', email: 'chfhdvlcl@naver.com', emailID: 'chfhdvlcl', emailDomain: 'naver.com', pw: '0421', pwChk: '0421', gender: 'female', birth: '1994-04-21', gallery : [
             {id:'', img:'', like:'', reply:[], date:'2023-07-25', voted: false}
         ]},
-        {id: 3, name: '김영은', email: 'ye_1223@naver.com', emailID: 'ye_1223', emailDomain: 'naver.com', pw: '1223', pwChk: '1223', gender: 'female', birth: '1998-12-23', gallery : [
+        {id: 3, name: '김영은', email: 'ye_1223@naver.com', emailID: 'ye_1223', emailDomain: 'naver.com', pw: '1223', pwChk: '1223', gender: 'female', birth: '1998-12-23', userDiary: [
+            {
+                id: 3,
+                name: '김영은',
+                email: 'ye_1223@naver.com',
+                emailID: 'ye_1223',
+                emailDomain: 'naver.com',
+                pw: '1223',
+                pwChk: '1223',
+                gender: 'female',
+                birth: '1998-12-23',
+                userDiary: [{
+                    id: 1,
+                    date: '2023.08.09 수 20:37',
+                    substance: '오늘 학원 끝나고 초롱🍏언니랑\n맛있는 수박주스🍉를 마시러 이디야에 갔다\n아주아주 귀여운 부채를 샀당\n언니는 언니 닮은 마이멜로디, 나는 내가 조아🍀하는 시나모롤로 골랐다\n혀나🍀언니가 있었으면 쿠로미까쥐 완벽한 삼총사인데\n나에게 돈이 많았다면 혀나🍀언니에게 쿠로미를 사줬을텐데\n퍽 아쉬웠다 퍽퍽',
+                    isPublic: true,
+                    style: { align: 'left' },
+                    updTime: null,
+                    comment: [{
+                        id: 1,
+                        comId: 'ye_1223',
+                        comName: '김영은',
+                        comText: '앗차차차 수박주스 마시러 간 게 아니지여 ',
+                        comDate: '2023.08.01 20:37'},
+                        {
+                        id: 2,
+                        comId: 'ye_1223',
+                        comName: '김영은',
+                        comText: 'ㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋ',
+                        comDate: '2023.08.01 20:37'
+                    },
+                    {
+                        id: 3,
+                        comId: 'zoa',
+                        comName: '조현아',
+                        comText: '나도 쿠로미 👾 💜 🍇 ☂️ 🟣 ',
+                        comDate: '2023.08.01 20:39'
+                    },
+                    {
+                        id: 4,
+                        comId: 'chfhdvlcl',
+                        comName: '이초롱',
+                        comText: '담엔 현아도 꼭 같이 가자하 ~ ',
+                        comDate: '2023.08.01 20:40'
+                    }
+                    ]
+                  }
+                ]
+              }
+        ], gallery : [
             {id:'', img:'', like:'', reply:[], date:'2023-07-25', voted: false}
         ]},
         {id: 4, name: '우동훈', email: 'wosm5798@naver.com', emailID: 'wosm5798', emailDomain: 'naver.com', pw: '0105', pwChk: '0105', gender: 'male', birth: '1997-01-05', gallery : [

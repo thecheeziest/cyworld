@@ -1,7 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
-    name: '홍길동',
+    name: '조정현',
     gender: '여자or남자',
     birthday: '1994.04.21.',
     bio: '내용을 입력해주세요.',

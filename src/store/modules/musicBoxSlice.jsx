@@ -26,6 +26,7 @@ const initialState = {    //music 슬라이스 Redux 초기 상태 정의
   carts: [], 
   cartTotal: 0, 
   date: getDate(),
+  selectedMusic: null,
 };
 
 const musicBoxSlice = createSlice({
@@ -53,6 +54,9 @@ const musicBoxSlice = createSlice({
       state.carts = [];       // 쇼핑 카트 초기와  carts 배열을 비우고
       state.cartTotal = 0;    // cartTotal을 0으로 설정
     },
+    selectMusic: (state, action) => {
+      state.selectedMusic = action.payload;
+    },
   },
 });
 
@@ -63,6 +67,7 @@ export const {
   removeCart,
   totalCart,
   resetCart,
+  selectMusic
 } = musicBoxSlice.actions;
 
 export default musicBoxSlice.reducer;

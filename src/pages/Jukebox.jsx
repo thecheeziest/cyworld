@@ -4,8 +4,15 @@ import CyworldToday from '../components/cyworld/CyworldMiniHome/CyworldToday';
 import { Icon } from '@iconify/react';
 import Jukebox_history from '../components/cyworld/CyworldMiniHomePage/Jukebox_history';
 import CyworldTitle from '../components/cyworld/CyworldMiniHome/CyworldTitle';
+import { useEffect } from 'react';
+
 
 const Jukebox = () => {
+
+    useEffect(()=>{
+        var musicList = localStorage.getItem('musicList');
+    })
+    
     return (
         <CyworldHPContainer>
             <div className="profile">
