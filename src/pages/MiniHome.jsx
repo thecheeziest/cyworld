@@ -14,7 +14,7 @@ const MiniHome = () => {
     // 도메인에 맞는 데이터 출력
     
     useEffect(() => {
-        navigate(`/${userID}`); // 새로고침 될 때마다 미니홈피 홈 화면으로
+        // navigate(`/${userID}`); // 새로고침 될 때마다 미니홈피 홈 화면으로
         localStorage.setItem('user', JSON.stringify(user));
         // user 데이터가 변경될 때마다 로컬 스토리지에 저장
         
@@ -24,6 +24,8 @@ const MiniHome = () => {
         dispatch(logout());
         navigate('/login');
     }
+
+    const selectedMusic = useSelector(state => state.music.selectedMusic);
 
     return (
         <CyworldMiniHP style={{ backgroundImage: nowUser.nowSkin ? nowUser.nowSkin : 'url(../images/skin/skin1.jpg)' }}>
@@ -40,7 +42,17 @@ const MiniHome = () => {
                             {nowUser.name} 님과 나는 <span>일촌</span>
                         </div>
                         <div className="now-music">
-                            <p>{nowUser.nowBgm ? nowUser.nowBgm : '음악 선물하기'}</p>
+                        {userID === user.emailID ? (
+                            selectedMusic ? (
+                                <p>
+                                    {selectedMusic.title}, {selectedMusic.singer}
+                                </p>
+                            ) : (
+                                <p>음악을 설정해주세요</p>
+                            )
+                        ) : (
+                            <p>음악을 설정해주세요</p>
+                        )}
                         </div>
                         <div className="logout">
                             <button onClick={onLogout}>로그아웃</button>

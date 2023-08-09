@@ -2,7 +2,6 @@ import React from 'react';
 import { CyworldHPContainer } from '../components/styled/cyworldStyle';
 import CyworldToday from '../components/cyworld/CyworldMiniHome/CyworldToday';
 import CyworldTitle from '../components/cyworld/CyworldMiniHome/CyworldTitle';
-// import Guest_Text from '../components/cyworld/CyworldMiniHomePage/Guest_Text';
 import Guest_Writ from '../components/cyworld/CyworldMiniHomePage/Guest_Writ';
 
 const GuestBook = () => {
@@ -34,7 +33,6 @@ const GuestBook = () => {
 
                         {/* 여기부터 본문 내용 들어가면 됨 (컴포넌트 연결하거나 그냥 작성하거나) */}
                       
-                        {/* <Guest_Text/> */}
                         <Guest_Writ/>
 
                     </div>

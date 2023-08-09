@@ -1,12 +1,66 @@
 import React from 'react';
-import { CyworldSetting } from '../../styled/cyworldStyle';
+import { CyworldJukeboxPg } from '../../styled/cyworldStyle';
+import { Link, useParams } from 'react-router-dom';
+import {useDispatch, useSelector } from 'react-redux'; 
+import { useEffect } from 'react';
+import { useState } from 'react';
+import { Icon } from '@iconify/react';
+import { selectMusic } from '../../../store/modules/musicBoxSlice';
 
 const Manager_bgm = () => {
+    const date = useSelector(state => state.music.date);
+    const [musicHistory, setMusicHistory] = useState([]);
+    const dispatch = useDispatch();
+
+    const { user } = useSelector(state => state.user);
+    const {userID} = useParams() //주인장의 id
+
+    useEffect(() => {
+        const savedMusicHistory = JSON.parse(localStorage.getItem('musicHistory'));
+        if (savedMusicHistory) {
+            setMusicHistory(savedMusicHistory);
+        }
+    }, []);
+
+    const JukeboxDelete = (index) => {
+        const updatedMusicHistory = [...musicHistory];
+        updatedMusicHistory.splice(index, 1);
+
+        setMusicHistory(updatedMusicHistory);
+        localStorage.setItem('musicHistory', JSON.stringify(updatedMusicHistory));
+    };
+
+    const selectMusics = (music) => {
+        dispatch(selectMusic(music));
+      };
+
     return (
-            <CyworldSetting>
-                <p className='bgm'>도토리 상점에서 배경음악을 설정할 수 있어요!</p>
-                {/* <p className='none'>보유 중인 배경음악이 없습니다.</p> */}
-            </CyworldSetting>
+        <CyworldJukeboxPg>
+        <div className="history">
+          
+            {userID === user.emailID && musicHistory.length > 0 ? (
+                    musicHistory.map((music, index) => (
+                        <p key={index} className='on'>
+                            <b>{music.id}</b>
+                            <strong>{music.title}</strong>
+                            <em>{music.singer}</em>
+                            <p className='HistoryBtn'>
+                                <button className='h' onClick={() => selectMusics(music)}>
+                                    적용<Icon icon="mingcute:check-fill" />
+                                </button>
+
+                                <button className='c' onClick={() => JukeboxDelete(index)}>
+                                    삭제<Icon icon="fxemoji:cancellationx" />
+                                </button>
+                            </p>
+                        </p>
+                    ))
+                ) : (
+                    <p className="none">설정된 배경 음악이 없습니다.</p>
+                )}
+         
+        </div>
+        </CyworldJukeboxPg>
     );
 };
 

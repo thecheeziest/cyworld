@@ -20,9 +20,7 @@ const MusicBox = ({ item }) => {
     const handleSearch = () => {
         // 검색어를 MusicBoxList 컴포넌트로 전달
         // filteredMusicList는 검색어에 따라 필터링된 음악 리스트 보여줌
-        
     };
-
     // 장바구니 보이기/숨기기 함수
     const toggleBasket = () => {
         setIsBasketVisible(!isBasketVisible);
@@ -42,6 +40,7 @@ const MusicBox = ({ item }) => {
                     <button className="searchBtn" onClick={handleSearch}><Icon icon="ion:search" color="#f60" width="30"/></button>
                     <CyworldCart>
                     <button className='cartBtn' onClick={toggleBasket}>
+                        <div className='cartCnt'>{cart.length}</div>
                         <p>장바구니</p>
                         <img src="./images/dotoristore/music_cart_btn.gif" alt="" />
                     </button>

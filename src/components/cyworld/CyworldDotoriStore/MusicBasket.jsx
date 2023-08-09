@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Icon } from '@iconify/react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useNavigate, useParams } from 'react-router-dom';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 import { addCart, removeCart, resetCart, totalCart } from '../../../store/modules/musicBoxSlice';
 
 
@@ -15,24 +15,32 @@ const MusicBasket = ({item}) => {
     //알림 메세지 
     const [addedToBasket, setAddedToBasket] = useState(false);
     
+    const [musicHistory, setMusicHistory] = useState([]);
+
     const AddToBasket = () => {
-      if (cart.length === 0) {
-        setAddedToBasket(false);
-      } else {
-        setAddedToBasket(true);
-        const cartItems = cart.map((cartItem) => cartItem.id);
-        dispatch(addCart(cartItems));
-  
-        // 카트 상태를 리셋하는 액션을 디스패치
-        dispatch(resetCart());
-  
-        setTimeout(() => {
-          setAddedToBasket(false);
-        }, 2000);
-      }
+        if (cart.length === 0) {
+            setAddedToBasket(false);
+        } else {
+            setAddedToBasket(true);
+            const cartItems = cart.map((cartItem) => cartItem.id);
+            dispatch(addCart(cartItems));
+
+            localStorage.setItem('musicList', JSON.stringify(cart));
+
+            // 카트 상태를 리셋하는 액션을 디스패치
+            dispatch(resetCart());
+
+           // 음악 히스토리 업데이트
+           const updatedMusicHistory = [...musicHistory, ...cart];
+           setMusicHistory(updatedMusicHistory);
+           localStorage.setItem('musicHistory', JSON.stringify(updatedMusicHistory));
+
+            setTimeout(() => {
+                setAddedToBasket(false);
+            }, 2000);
+        }
     };
   
-
     const RemoveItem = (id) => {
         // 클릭한 아이템의 ID를 파라미터로 removeCart 액션을 디스패치합니다.
         dispatch(removeCart(id));
@@ -41,7 +49,7 @@ const MusicBasket = ({item}) => {
 
       const navigate = useNavigate();
       const onGo = () => {
-        navigate(`/${user.emailID}/manager`);  // 주인장의 미니홈피로 이동
+        navigate(`/${user.emailID}/manager`);  // 설정으로 이동
       };  
 
     return (
@@ -82,10 +90,11 @@ const MusicBasket = ({item}) => {
                   <h2>음악 바구니가 비어있습니다. 음악을 담아주세요!</h2>
                 </div>
               )}
+              <button className='BasketBtn' onClick={onGo}>배경음악 설정하기</button>
               {addedToBasket && (
                   <div className='BasketMessage'>
                     <h2>담기 성공!</h2>
-                    <h2 onClick={onGo}>배경화면 설정하기</h2>
+                    {/* <h2 onClick={onGo}>배경화면 설정하기</h2> */}
                   </div>
                 )}
               <div>
