@@ -5,7 +5,7 @@ import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
 import { guestDate } from '../../../store/modules/guestSlice';
-import { addGuest } from '../../../store/modules/userSlice';
+// import { addGuest } from '../../../store/modules/userSlice';
 
     const Guest_Writ = () => {
     const { user } = useSelector(state => state.user); // userData 중 로그인한 사람의 객체만 뽑은거
@@ -31,7 +31,7 @@ import { addGuest } from '../../../store/modules/userSlice';
           setGuestContent(''); // 저장 후 textarea를 비웁니다.
         }
         
-        dispatch(addGuest(guestList))
+        // dispatch(addGuest(guestList))
       };
     
       // 수정 버튼 클릭 시 해당 아이템을 수정할 수 있도록 하는 함수

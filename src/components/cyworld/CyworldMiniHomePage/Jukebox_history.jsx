@@ -4,8 +4,6 @@ import { Link, useParams } from 'react-router-dom';
 import {useDispatch, useSelector } from 'react-redux'; 
 import { useEffect } from 'react';
 import { useState } from 'react';
-// import { selectMusic } from '../../../store/modules/musicBoxSlice';
-
 
 const Jukebox_history = () => {
     const date = useSelector(state => state.music.date);
@@ -22,23 +20,10 @@ const Jukebox_history = () => {
         }
     }, []);
 
-    // const JukeboxDelete = (index) => {
-    //     const updatedMusicHistory = [...musicHistory];
-    //     updatedMusicHistory.splice(index, 1);
-
-    //     setMusicHistory(updatedMusicHistory);
-    //     localStorage.setItem('musicHistory', JSON.stringify(updatedMusicHistory));
-    // };
-
-    // const selectMusics = (music) => {
-    //     dispatch(selectMusic(music));
-    //   };
-
-
+  
     return (
         <CyworldJukeboxPg>
         <div className="history">
-            {/* <p className="none">설정된 배경 음악이 없습니다.</p> */}
             {userID === user.emailID && musicHistory.length > 0 ? (
                     musicHistory.map((music, index) => (
                         <p key={index} className='on'>
@@ -46,13 +31,6 @@ const Jukebox_history = () => {
                             <strong>{music.title}</strong>
                             <em>{music.singer}</em>
                             <p className='HistoryBtn'>
-                                {/* <button className='h' onClick={() => selectMusics(music)}>
-                                    적용<Icon icon="mingcute:check-fill" />
-                                </button>
-
-                                <button className='c' onClick={() => JukeboxDelete(index)}>
-                                    삭제<Icon icon="fxemoji:cancellationx" />
-                                </button> */}
                             </p>
                         </p>
                     ))

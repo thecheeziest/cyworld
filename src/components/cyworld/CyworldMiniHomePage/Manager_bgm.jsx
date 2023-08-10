@@ -1,6 +1,6 @@
 import React from 'react';
 import { CyworldJukeboxPg } from '../../styled/cyworldStyle';
-import { Link, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import {useDispatch, useSelector } from 'react-redux'; 
 import { useEffect } from 'react';
 import { useState } from 'react';
@@ -16,18 +16,15 @@ const Manager_bgm = () => {
     const {userID} = useParams() //주인장의 id
 
     useEffect(() => {
-        const savedMusicHistory = JSON.parse(localStorage.getItem('musicHistory'));
-        if (savedMusicHistory) {
-            setMusicHistory(savedMusicHistory);
+        if (userID === user.emailID) {
+            setMusicHistory(user.musicHistory || []);
         }
-    }, []);
+    }, [userID, user]);
 
     const JukeboxDelete = (index) => {
         const updatedMusicHistory = [...musicHistory];
         updatedMusicHistory.splice(index, 1);
-
         setMusicHistory(updatedMusicHistory);
-        localStorage.setItem('musicHistory', JSON.stringify(updatedMusicHistory));
     };
 
     const selectMusics = (music) => {
@@ -37,7 +34,6 @@ const Manager_bgm = () => {
     return (
         <CyworldJukeboxPg>
         <div className="history">
-          
             {userID === user.emailID && musicHistory.length > 0 ? (
                     musicHistory.map((music, index) => (
                         <p key={index} className='on'>
@@ -48,7 +44,6 @@ const Manager_bgm = () => {
                                 <button className='h' onClick={() => selectMusics(music)}>
                                     적용<Icon icon="mingcute:check-fill" />
                                 </button>
-
                                 <button className='c' onClick={() => JukeboxDelete(index)}>
                                     삭제<Icon icon="fxemoji:cancellationx" />
                                 </button>

@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Icon } from '@iconify/react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Link, useNavigate, useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { addCart, removeCart, resetCart, totalCart } from '../../../store/modules/musicBoxSlice';
 import { addBgm } from '../../../store/modules/userSlice';
 
@@ -26,8 +26,6 @@ const MusicBasket = ({item}) => {
             const cartItems = cart.map((cartItem) => cartItem.id);
             dispatch(addCart(cartItems));
 
-            localStorage.setItem('musicList', JSON.stringify(cart));
-
             // 카트 상태를 리셋하는 액션을 디스패치
             dispatch(resetCart());
             dispatch(addBgm(cart))
@@ -35,7 +33,6 @@ const MusicBasket = ({item}) => {
            // 음악 히스토리 업데이트
            const updatedMusicHistory = [...musicHistory, ...cart];
            setMusicHistory(updatedMusicHistory);
-           localStorage.setItem('musicHistory', JSON.stringify(updatedMusicHistory));
 
             setTimeout(() => {
                 setAddedToBasket(false);
