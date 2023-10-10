@@ -1,4 +1,4 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createAction, createSlice } from '@reduxjs/toolkit';
 
 const getDate = () => {
   const now = new Date();
@@ -70,5 +70,5 @@ export const {
   selectMusic
 } = musicBoxSlice.actions;
 
+export const selectMusicForManager = createAction('manager_bgm/selectMusic');
 export default musicBoxSlice.reducer;
-

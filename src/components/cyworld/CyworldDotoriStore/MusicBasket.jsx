@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { Icon } from '@iconify/react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate, useParams } from 'react-router-dom';
-import { addCart, removeCart, resetCart, totalCart } from '../../../store/modules/musicBoxSlice';
+import { addCart, removeCart, resetCart, selectMusicForManager, totalCart } from '../../../store/modules/musicBoxSlice';
 import { addBgm } from '../../../store/modules/userSlice';
 
 
@@ -21,6 +21,7 @@ const MusicBasket = ({item}) => {
     const AddToBasket = () => {
         if (cart.length === 0) {
             setAddedToBasket(false);
+            dispatch(selectMusicForManager(cart));
         } else {
             setAddedToBasket(true);
             const cartItems = cart.map((cartItem) => cartItem.id);

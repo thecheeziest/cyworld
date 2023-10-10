@@ -167,7 +167,22 @@ export const userSlice = createSlice({
             ]
             console.log(state.relationData)
         },
-       
+        addGuest(state, action){     // 기존에 있던 거를 정리해야함
+            state.user.userGuest = state.user.userGuest || []; 
+            state.user.userGuest = action.payload
+            state.userData = state.userData.map(item => item.emailID === state.user.emailID ? state.user : item) 
+            localStorage.setItem('user', JSON.stringify(state.user)) 
+            localStorage.setItem('userData', JSON.stringify(state.userData))     
+        },
+        addBgm(state, action){
+            state.user.userBgm = state.user.userBgm || []; 
+            // state.user.userBgm = action.payload
+            
+            state.user.userBgm.push(...action.payload)
+            state.userData = state.userData.map(item => item.emailID === state.user.emailID ? state.user : item) 
+            localStorage.setItem('user', JSON.stringify(state.user)) 
+            localStorage.setItem('userData', JSON.stringify(state.userData))     
+        },
         trueOpen(state, action) {
             state.isOpen = true
         },
@@ -182,15 +197,10 @@ export const userSlice = createSlice({
             state.relationData = state.relationData.map(item => item.id == action.payload ? {...item, status : '일촌' } : item)
             alert('일촌신청을 수락했습니다')
             console.log(state.relationData)
-        },
-        addBgm(state, action) {
-            state.musicHistory = [...state.musicHistory, ...action.payload];
         }
-
-
     }
 })
 
-
-export const { addDiary, delDiary, editDiary, addComDiary, delComDiary, changeInput, login, logout, addSkin, onSkin, addMiniroom, onMiniroom, addMinimi, onMinimi, delMinimi, allDelMinimi, setTitle, setInfo, addFriendsSay, addRelationShip, trueOpen, falseOpen, declineRel, acceptRel,addBgm } = userSlice.actions
+//
+export const { addDiary, delDiary, editDiary, addComDiary, delComDiary, changeInput, login, logout, addSkin, onSkin, addMiniroom, onMiniroom, addMinimi, onMinimi, delMinimi, allDelMinimi, setTitle, setInfo, addFriendsSay, addRelationShip, trueOpen, falseOpen, declineRel, acceptRel ,addGuest, addBgm } = userSlice.actions
 export default userSlice.reducer

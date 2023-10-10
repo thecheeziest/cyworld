@@ -21,6 +21,7 @@ const Jukebox_history = () => {
     }, []);
 
   
+
     return (
         <CyworldJukeboxPg>
         <div className="history">

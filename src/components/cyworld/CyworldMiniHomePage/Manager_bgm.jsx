@@ -10,21 +10,25 @@ import { selectMusic } from '../../../store/modules/musicBoxSlice';
 const Manager_bgm = () => {
     const date = useSelector(state => state.music.date);
     const [musicHistory, setMusicHistory] = useState([]);
+    const selectedMusic = useSelector(state => state.music.selectedMusic);
     const dispatch = useDispatch();
 
     const { user } = useSelector(state => state.user);
     const {userID} = useParams() //주인장의 id
 
     useEffect(() => {
-        if (userID === user.emailID) {
-            setMusicHistory(user.musicHistory || []);
+        const savedMusicHistory = JSON.parse(localStorage.getItem('musicHistory'));
+        if (savedMusicHistory) {
+            setMusicHistory(savedMusicHistory);
         }
-    }, [userID, user]);
+    }, []);
 
     const JukeboxDelete = (index) => {
         const updatedMusicHistory = [...musicHistory];
         updatedMusicHistory.splice(index, 1);
+
         setMusicHistory(updatedMusicHistory);
+        localStorage.setItem('musicHistory', JSON.stringify(updatedMusicHistory));
     };
 
     const selectMusics = (music) => {
@@ -34,6 +38,7 @@ const Manager_bgm = () => {
     return (
         <CyworldJukeboxPg>
         <div className="history">
+          
             {userID === user.emailID && musicHistory.length > 0 ? (
                     musicHistory.map((music, index) => (
                         <p key={index} className='on'>
