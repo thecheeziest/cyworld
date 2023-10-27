@@ -167,7 +167,7 @@ export const userSlice = createSlice({
             ]
             console.log(state.relationData)
         },
-        addGuest(state, action){
+        addGuest(state, action){     // 기존에 있던 거를 정리해야함
             state.user.userGuest = state.user.userGuest || []; 
             state.user.userGuest = action.payload
             state.userData = state.userData.map(item => item.emailID === state.user.emailID ? state.user : item) 
@@ -201,5 +201,6 @@ export const userSlice = createSlice({
     }
 })
 
-export const { addDiary, delDiary, editDiary, addComDiary, delComDiary, changeInput, login, logout, addSkin, onSkin, addMiniroom, onMiniroom, addMinimi, onMinimi, delMinimi, allDelMinimi, setTitle, setInfo, addFriendsSay, addRelationShip, trueOpen, falseOpen, declineRel, acceptRel, addGuest, addBgm } = userSlice.actions
+//
+export const { addDiary, delDiary, editDiary, addComDiary, delComDiary, changeInput, login, logout, addSkin, onSkin, addMiniroom, onMiniroom, addMinimi, onMinimi, delMinimi, allDelMinimi, setTitle, setInfo, addFriendsSay, addRelationShip, trueOpen, falseOpen, declineRel, acceptRel ,addGuest, addBgm } = userSlice.actions
 export default userSlice.reducer

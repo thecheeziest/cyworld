@@ -1,6 +1,6 @@
 import React from 'react';
 import { CyworldJukeboxPg } from '../../styled/cyworldStyle';
-import { Link, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import {useDispatch, useSelector } from 'react-redux'; 
 import { useEffect } from 'react';
 import { useState } from 'react';
@@ -10,6 +10,7 @@ import { selectMusic } from '../../../store/modules/musicBoxSlice';
 const Manager_bgm = () => {
     const date = useSelector(state => state.music.date);
     const [musicHistory, setMusicHistory] = useState([]);
+    const selectedMusic = useSelector(state => state.music.selectedMusic);
     const dispatch = useDispatch();
 
     const { user } = useSelector(state => state.user);
@@ -48,7 +49,6 @@ const Manager_bgm = () => {
                                 <button className='h' onClick={() => selectMusics(music)}>
                                     적용<Icon icon="mingcute:check-fill" />
                                 </button>
-
                                 <button className='c' onClick={() => JukeboxDelete(index)}>
                                     삭제<Icon icon="fxemoji:cancellationx" />
                                 </button>
