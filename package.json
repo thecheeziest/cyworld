@@ -1,5 +1,5 @@
 {
-  "homepage": "https://lcl3392.github.io/Project_cyworld/",
+  "homepage": "https://thecheeziest.github.io/cyworld/",
   "name": "cyworld",
   "private": true,
   "version": "0.0.0",
@@ -10,13 +10,13 @@
     "lint": "eslint src --ext js,jsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d build"
+    "deploy": "gh-pages -d dist"
   },
   "dependencies": {
     "@iconify/react": "^4.1.1",
     "@redux-devtools/extension": "^3.3.0",
     "@reduxjs/toolkit": "^1.9.5",
-    "axios": "^1.5.0",
+    "axios": "^1.7.2",
     "gh-pages": "^6.0.0",
     "moment": "^2.29.4",
     "numeral": "^2.0.6",
@@ -39,6 +39,6 @@
     "eslint-plugin-react": "^7.32.2",
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-react-refresh": "^0.4.1",
-    "vite": "^4.4.0"
+    "vite": "^5.3.1"
   }
 }
