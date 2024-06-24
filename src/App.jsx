@@ -1,5 +1,5 @@
 import './assets/css/reset.css'
-import { HashRouter as Router, Routes, Route } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import Layout from './pages/Layout';
 import Home from './pages/Home';
 import Join from './pages/Join';
@@ -22,37 +22,32 @@ import Minimi from './pages/Minimi';
 
 const App = () => {
   return (
-    <Router>
-        <Routes>
-
-          <Route path="/" element={<Layout />}>
-            <Route index element={<Home />} />
-            <Route path="/login" element={<Login />} />
-            <Route path="/join" element={<Join />} />
-            <Route path="/dotori_store">
-            <Route index element={<DotoriStore />} />
-            <Route path="bgm" element={<BgmStore />} />
-            <Route path="themes" element={<Theme />} />
-            <Route path="minimi" element={<Minimi />} />
-          </Route>
+    <Routes>
+      <Route path="/" element={<Layout />}>
+        <Route index element={<Home />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/join" element={<Join />} />
+        <Route path="/dotori_store">
+          <Route index element={<DotoriStore />} />
+          <Route path="bgm" element={<BgmStore />} />
+          <Route path="themes" element={<Theme />} />
+          <Route path="minimi" element={<Minimi />} />
         </Route>
-              
-          <Route path="/:userID" element={<MiniHome />}>
-            <Route index element={<MiniMain />} />
-            <Route path="profile" element={<Profile />} />
-            <Route path="diary"> 
-              <Route index element={<Diary />}/>
-              <Route path="add" element={<DiaryAdd />}/>
-              <Route path="edit" element={<DiaryEdit />}/>
-            </Route>
-            <Route path="gallery" element={<Gallery />} />
-            <Route path="guest_book" element={<GuestBook />} />
-            <Route path="jukebox" element={<Jukebox />} />
-            <Route path="manager" element={<Manager />} />
-          </Route>
-
-        </Routes>
-    </Router>
+      </Route>
+      <Route path="/:userID" element={<MiniHome />}>
+        <Route index element={<MiniMain />} />
+        <Route path="profile" element={<Profile />} />
+        <Route path="diary">
+          <Route index element={<Diary />}/>
+          <Route path="add" element={<DiaryAdd />}/>
+          <Route path="edit" element={<DiaryEdit />}/>
+        </Route>
+        <Route path="gallery" element={<Gallery />} />
+        <Route path="guest_book" element={<GuestBook />} />
+        <Route path="jukebox" element={<Jukebox />} />
+        <Route path="manager" element={<Manager />} />
+      </Route>
+    </Routes>
   );
 };
 
