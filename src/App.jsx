@@ -1,6 +1,5 @@
 import './assets/css/reset.css'
-import { Routes, Route } from "react-router-dom";
-import { HashRouter as Router } from "react-router-dom";
+import { HashRouter as Router, Routes, Route } from "react-router-dom";
 import Layout from './pages/Layout';
 import Home from './pages/Home';
 import Join from './pages/Join';
@@ -19,7 +18,6 @@ import GuestBook from './pages/GuestBook';
 import Jukebox from './pages/Jukebox';
 import Manager from './pages/Manager';
 import Minimi from './pages/Minimi';
-import ThemeMain from './pages/ThemeMain';
 
 
 const App = () => {
