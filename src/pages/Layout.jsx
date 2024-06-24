@@ -1,9 +1,8 @@
 import React from 'react';
-import CyworldHeader from '../components/cyworld/CyworldHome/cyworldHeader';
 import { Outlet } from 'react-router-dom';
-import CyworldFooter from '../components/cyworld/CyworldHome/CyworldFooter';
 import { CyworldWrap } from '../components/styled/cyworldStyle';
-import { useSelector } from 'react-redux';
+import CyworldHeader from '../components/cyworld/CyworldHome/CyworldHeader.jsx';
+import CyworldFooter from '../components/cyworld/CyworldHome/CyworldFooter.jsx';
 
 const Layout = () => {
     return (
